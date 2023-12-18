@@ -24,7 +24,8 @@ MonoBehaviour:
   damage:
     damage: 1
     knockback: 20
-  muzzleSpeed: 40
+  muzzleSpeed: 15
+  projectileGravity: 0.1
   fireDelay: 1
   recoilForce: 2
   leanScale: {x: 0.5, y: -0.5}
