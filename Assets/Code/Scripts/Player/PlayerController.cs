@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using AmmoRacked2.Runtime.Health;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,11 +17,14 @@ namespace AmmoRacked2.Runtime.Player
         public float gamepadTurretSensitivity;
 
         private bool useMouse;
-        private int index;
+        public int index;
 
         private Vector2 lastTurretInput;
 
         public static readonly List<InputDevice> Devices = new();
+        
+        public static event System.Action<PlayerController, Tank, DamageArgs, GameObject, Vector3, Vector3> KillEvent;
+        public static event System.Action<PlayerController, Tank, DamageArgs, GameObject, Vector3, Vector3> DeathEvent;
 
         private void Awake()
         {
@@ -31,9 +35,29 @@ namespace AmmoRacked2.Runtime.Player
             tank.gameObject.SetActive(false);
         }
 
-        private void OnEnable() { inputAsset.Enable(); }
+        private void OnEnable()
+        {
+            inputAsset.Enable();
+            Tank.DeathEvent += OnTankDeath;
+        }
 
-        private void OnDisable() { inputAsset.Disable(); }
+        private void OnDisable()
+        {
+            inputAsset.Disable();
+            Tank.DeathEvent -= OnTankDeath;
+        }
+
+        private void OnTankDeath(Tank tank, DamageArgs args, GameObject invoker, Vector3 point, Vector3 direction)
+        {
+            if (tank == this.tank)
+            {
+                DeathEvent?.Invoke(this, tank, args, invoker, point, direction);
+            }
+            else if (invoker.gameObject == tank.gameObject)
+            {
+                KillEvent?.Invoke(this, tank, args, invoker, point, direction);
+            }
+        }
 
         private void OnDestroy()
         {

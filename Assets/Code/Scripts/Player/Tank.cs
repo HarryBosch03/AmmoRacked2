@@ -1,6 +1,6 @@
-﻿using System;
-using AmmoRacked2.Runtime.Health;
+﻿using AmmoRacked2.Runtime.Health;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace AmmoRacked2.Runtime.Player
 {
@@ -26,6 +26,9 @@ namespace AmmoRacked2.Runtime.Player
         public bool Shoot { get; set; }
         
         public Rigidbody Body { get; private set; }
+
+        public static event System.Action<Tank, DamageArgs, GameObject, Vector3, Vector3> DamageEvent;
+        public static event System.Action<Tank, DamageArgs, GameObject, Vector3, Vector3> DeathEvent;
         
         private void Awake()
         {
@@ -103,6 +106,8 @@ namespace AmmoRacked2.Runtime.Player
 
         public void Damage(DamageArgs args, GameObject invoker, Vector3 point, Vector3 direction)
         {
+            DamageEvent?.Invoke(this, args, invoker, point, direction);
+            
             currentHealth -= args.damage;
             Body.AddForce(direction.normalized * args.knockback, ForceMode.Impulse);
 
@@ -114,6 +119,8 @@ namespace AmmoRacked2.Runtime.Player
 
         private void Die(DamageArgs args, GameObject invoker, Vector3 point, Vector3 direction)
         {
+            DeathEvent?.Invoke(this, args, invoker, point, direction);
+            
             if (deadTankPrefab)
             {
                 var instance = Instantiate(deadTankPrefab, transform.position, transform.rotation);

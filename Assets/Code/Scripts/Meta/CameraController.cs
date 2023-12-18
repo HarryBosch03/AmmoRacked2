@@ -43,6 +43,8 @@ namespace AmmoRacked2.Runtime.Meta
 
                 foreach (var player in GameController.players)
                 {
+                    if (!player.tank.gameObject.activeSelf) continue;
+                    
                     var worldPosition = player.tank.Body.position;
                     var cameraPosition = new Vector2(Vector3.Dot(right, worldPosition), Vector3.Dot(up, worldPosition));
                     
@@ -60,9 +62,9 @@ namespace AmmoRacked2.Runtime.Meta
                 smoothedMax = Vector2.Lerp(max, smoothedMax, smoothing);
             }
             
-            var center = (max + min) * 0.5f;
-            var size = (max - min);
-            var orthoSize = Mathf.Max(size.x * mainCamera.aspect * 0.5f, size.y * 0.5f, minSize);
+            var center = (smoothedMax + smoothedMin) * 0.5f;
+            var size = (smoothedMax - smoothedMin);
+            var orthoSize = Mathf.Max(size.x / mainCamera.aspect * 0.5f, size.y * 0.5f, minSize);
 
             var position = right * center.x + up * center.y + forward;
             position += (forward / forward.y) * (height - position.y);
