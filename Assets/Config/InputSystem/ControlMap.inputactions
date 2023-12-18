@@ -17,7 +17,7 @@
                 {
                     "name": "Turning",
                     "type": "Value",
-                    "id": "49a6e2fe-4daa-4e7c-a0f6-31c5294657c8",
+                    "id": "010de142-005c-4514-bb53-e8db5be419ec",
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
@@ -110,50 +110,6 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Keyboard",
-                    "id": "18d27aec-c663-4a5a-bcb2-ee1df55b032a",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Turning",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "15d334b7-7e87-401a-9f92-90a53714d459",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Turning",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "69fd0334-8488-4ccf-b91f-32553b3f6614",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Turning",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "f21d5db9-196a-4984-8749-924d81b60212",
-                    "path": "<Gamepad>/leftStick/x",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Turning",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
                     "name": "",
                     "id": "ea96993a-522b-456f-a639-e65103a9727c",
                     "path": "<Gamepad>/rightStick",
@@ -167,7 +123,7 @@
                 {
                     "name": "",
                     "id": "9cbdad3e-a89d-434d-b694-a5b1a49faeb8",
-                    "path": "<Gamepad>/rightTrigger",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -178,11 +134,55 @@
                 {
                     "name": "",
                     "id": "e8e055ea-fdc9-4ec3-9d42-76d1ab397dc4",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Keyboard",
+                    "id": "50660f9d-1009-4487-b690-bd07a56245f6",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Turning",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "8a04e346-b43a-420a-b618-4647c9c2fde7",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Turning",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "bf31e78b-ca77-43ca-bc13-62899ad18134",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Turning",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "367a54e6-bc31-4c9f-b248-6b9545157ab5",
+                    "path": "<Gamepad>/leftStick/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Turning",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

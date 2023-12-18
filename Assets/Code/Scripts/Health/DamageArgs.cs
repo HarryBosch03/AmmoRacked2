@@ -1,6 +1,4 @@
 ﻿
-using UnityEngine;
-
 namespace AmmoRacked2.Runtime.Health
 {
     [System.Serializable]
