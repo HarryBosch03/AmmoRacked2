@@ -13,6 +13,7 @@ namespace AmmoRacked2.Runtime
 
         private GameObject owner;
         private Transform hitFX;
+        private Transform detach;
 
         public Projectile Spawn(GameObject owner, Vector3 position, Vector3 velocity, DamageArgs damage)
         {
@@ -28,6 +29,8 @@ namespace AmmoRacked2.Runtime
         {
             hitFX = transform.Find("HitFX");
             if (hitFX) hitFX.gameObject.SetActive(false);
+
+            detach = transform.Find("Detach");
         }
 
         private void FixedUpdate()
@@ -66,6 +69,11 @@ namespace AmmoRacked2.Runtime
                 hitFX.SetParent(null);
                 hitFX.position = position;
                 hitFX.rotation = Quaternion.LookRotation(direction, Vector3.up);
+            }
+
+            if (detach)
+            {
+                detach.SetParent(null);
             }
             
             Destroy(gameObject);

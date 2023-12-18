@@ -184,7 +184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4371973530999955100, guid: ce36d40490fa22b44bb3117aee472bbb, type: 3}
       propertyPath: m_Name
-      value: Shell Impact
+      value: Detach
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce36d40490fa22b44bb3117aee472bbb, type: 3}
@@ -247,10 +247,6 @@ PrefabInstance:
     - target: {fileID: 4371973530999955100, guid: ce36d40490fa22b44bb3117aee472bbb, type: 3}
       propertyPath: m_Name
       value: HitFX
-      objectReference: {fileID: 0}
-    - target: {fileID: 4371973530999955102, guid: ce36d40490fa22b44bb3117aee472bbb, type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 80
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce36d40490fa22b44bb3117aee472bbb, type: 3}

@@ -6,7 +6,7 @@
             "id": "237c1e67-ffbb-4c01-b1d9-76c2b3f80789",
             "actions": [
                 {
-                    "name": "Throttle.L",
+                    "name": "Throttle",
                     "type": "Value",
                     "id": "12529225-891f-4c15-9156-d10123e85355",
                     "expectedControlType": "Axis",
@@ -15,13 +15,13 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Throttle.R",
-                    "type": "Button",
+                    "name": "Turning",
+                    "type": "Value",
                     "id": "010de142-005c-4514-bb53-e8db5be419ec",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Turret",
@@ -50,7 +50,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Throttle.L",
+                    "action": "Throttle",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -61,7 +61,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Throttle.L",
+                    "action": "Throttle",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -72,7 +72,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Throttle.L",
+                    "action": "Throttle",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -83,7 +83,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Throttle.L",
+                    "action": "Throttle",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -94,18 +94,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Throttle.L",
+                    "action": "Throttle",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "positive",
                     "id": "34750481-9be8-4bae-a904-271aea30e717",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Throttle.L",
+                    "action": "Throttle",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -123,7 +123,7 @@
                 {
                     "name": "",
                     "id": "9cbdad3e-a89d-434d-b694-a5b1a49faeb8",
-                    "path": "<Gamepad>/rightStickPress",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -134,7 +134,7 @@
                 {
                     "name": "",
                     "id": "e8e055ea-fdc9-4ec3-9d42-76d1ab397dc4",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -149,64 +149,42 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Throttle.R",
+                    "action": "Turning",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "negative",
                     "id": "8a04e346-b43a-420a-b618-4647c9c2fde7",
-                    "path": "<Keyboard>/d",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Throttle.R",
+                    "action": "Turning",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "positive",
                     "id": "bf31e78b-ca77-43ca-bc13-62899ad18134",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Throttle.R",
+                    "action": "Turning",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Gamepad",
-                    "id": "5dfb95d7-1939-490c-b7e7-c654687dd297",
-                    "path": "1DAxis",
+                    "name": "",
+                    "id": "367a54e6-bc31-4c9f-b248-6b9545157ab5",
+                    "path": "<Gamepad>/leftStick/x",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Throttle.R",
-                    "isComposite": true,
+                    "action": "Turning",
+                    "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "e3a53739-1853-44da-8d9a-5400b22fcac1",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Throttle.R",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "c2f6d66f-8a2f-42b0-9d77-a68e0ba47d29",
-                    "path": "<Gamepad>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Throttle.R",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 }
             ]
         }

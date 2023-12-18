@@ -9,7 +9,7 @@ namespace AmmoRacked2.Runtime.Player
     {
         public float moveSpeed = 10.0f;
         public float moveAccelerationTime = 1.0f;
-        public float turnSpeed = 1.0f;
+        public float turnSpeedDegrees = 1.0f;
         public float turnAccelerationTime = 0.04f;
         [Range(0.0f, 1.0f)]
         public float tangentialFriction = 0.8f;
@@ -18,10 +18,13 @@ namespace AmmoRacked2.Runtime.Player
         public int maxHealth;
 
         [Space]
+        public float turretTurnSpeed;
+        public float turretTurnAcceleration;
         public Projectile projectilePrefab;
         public DamageArgs damage;
         public float muzzleSpeed;
         public float fireDelay;
+        public float recoilForce;
         
         [Space]
         public Vector2 leanScale = Vector2.one;

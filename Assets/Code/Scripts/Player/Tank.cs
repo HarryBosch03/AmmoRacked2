@@ -1,4 +1,5 @@
-﻿using AmmoRacked2.Runtime.Health;
+﻿using System;
+using AmmoRacked2.Runtime.Health;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,9 +21,9 @@ namespace AmmoRacked2.Runtime.Player
         private Vector2 smoothedLean;
         private float lastFireTime;
 
-        public float LeftThrottle { get; set; }
-        public float RightThrottle { get; set; }
-        public float TurretInput { get; set; }
+        public float Throttle { get; set; }
+        public float Turning { get; set; }
+        public Vector3 AimPosition { get; set; }
         public bool Shoot { get; set; }
         
         public Rigidbody Body { get; private set; }
@@ -52,11 +53,11 @@ namespace AmmoRacked2.Runtime.Player
         private void FixedUpdate()
         {
             ApplyThrottle();
+            ApplyTurning();
             ApplyTangentFriction();
             TryShoot();
 
             smoothedLean = Vector2.Lerp(modelLean, smoothedLean, config.leanSmoothing);
-            Shoot = false;
         }
 
         private void TryShoot()
@@ -68,7 +69,9 @@ namespace AmmoRacked2.Runtime.Player
             fwd.y = 0.0f;
             fwd.Normalize();
             
-            config.projectilePrefab.Spawn(gameObject, muzzle.position, fwd * config.muzzleSpeed, config.damage);
+            config.projectilePrefab.Spawn(gameObject, muzzle.position, Body.velocity + fwd * config.muzzleSpeed, config.damage);
+            
+            Body.AddForce(-muzzle.forward * config.recoilForce, ForceMode.Impulse);
             
             lastFireTime = Time.time;
         }
@@ -89,24 +92,27 @@ namespace AmmoRacked2.Runtime.Player
 
         private void ApplyThrottle()
         {
-            ApplyThrottle(1);
-            ApplyThrottle(-1);
-        }
-        
-        private void ApplyThrottle(int sign)
-        {
-            var input = Mathf.Clamp(sign == 1 ? RightThrottle : LeftThrottle, -1.0f, 1.0f);
-
+            var input = Mathf.Clamp(Throttle, -1.0f, 1.0f);
+            
             var normal = transform.forward;
             var target = input * config.moveSpeed;
-
-            var point = transform.position + transform.right * config.turnSpeed * sign;
-            var velocity = Body.GetPointVelocity(point);
-            var current = Vector3.Dot(normal, velocity);
+            var current = Vector3.Dot(normal, Body.velocity);
             
             var force = (target - current) * 2.0f / config.moveAccelerationTime;
             modelLean.y = force;
-            Body.AddForceAtPosition(normal * force, point, ForceMode.Acceleration);
+            Body.AddForce(normal * force, ForceMode.Acceleration);
+        }
+        
+        private void ApplyTurning()
+        {
+            var input = Mathf.Clamp(Turning, -1.0f, 1.0f);
+
+            var normal = transform.up;
+            var target = input * config.turnSpeedDegrees * Mathf.Deg2Rad;
+            var current = Vector3.Dot(normal, Body.angularVelocity);
+            
+            var torque = (target - current) * 2.0f / config.turnAccelerationTime;
+            Body.AddTorque(Vector3.up * torque, ForceMode.Acceleration);
         }
         
         public void Damage(DamageArgs args, GameObject invoker, Vector3 point, Vector3 direction)
@@ -132,8 +138,8 @@ namespace AmmoRacked2.Runtime.Player
                 var body = instance.GetComponent<Rigidbody>();
                 if (body)
                 {
-                    body.velocity = this.Body.velocity;
-                    body.angularVelocity = this.Body.angularVelocity;
+                    body.velocity = Body.velocity + direction * args.knockback;
+                    body.angularVelocity = Body.angularVelocity;
                 }
             }
             

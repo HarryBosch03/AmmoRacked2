@@ -4931,7 +4931,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: fa01b149c0f25604787a84c841290794, type: 2}
-  deadTankPrefab: {fileID: 0}
+  deadTankPrefab: {fileID: 5272512520199695960, guid: e4856bb4e07f5c04ca7086fee51d9c0d, type: 3}
   turret: {fileID: 5276957206065552857}
   muzzle: {fileID: 3642367006514928843}
 --- !u!114 &3892763089247445254

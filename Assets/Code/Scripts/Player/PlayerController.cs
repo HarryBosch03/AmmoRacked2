@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using AmmoRacked2.Runtime.Health;
 using UnityEngine;
@@ -11,18 +12,19 @@ namespace AmmoRacked2.Runtime.Player
     {
         public InputActionAsset inputAsset;
         public Tank tank;
-        
+
         [Space]
         public float mouseTurretSensitivity;
         public float gamepadTurretSensitivity;
 
         private bool useMouse;
         public int index;
+        public Camera mainCamera;
 
         private Vector2 lastTurretInput;
 
         public static readonly List<InputDevice> Devices = new();
-        
+
         public static event System.Action<PlayerController, Tank, DamageArgs, GameObject, Vector3, Vector3> KillEvent;
         public static event System.Action<PlayerController, Tank, DamageArgs, GameObject, Vector3, Vector3> DeathEvent;
 
@@ -33,6 +35,8 @@ namespace AmmoRacked2.Runtime.Player
 
             tank = Instantiate(tank);
             tank.gameObject.SetActive(false);
+
+            mainCamera = Camera.main;
         }
 
         private void OnEnable()
@@ -53,7 +57,7 @@ namespace AmmoRacked2.Runtime.Player
             {
                 DeathEvent?.Invoke(this, tank, args, invoker, point, direction);
             }
-            
+
             if (invoker.gameObject == this.tank.gameObject)
             {
                 KillEvent?.Invoke(this, tank, args, invoker, point, direction);
@@ -70,26 +74,34 @@ namespace AmmoRacked2.Runtime.Player
         {
             if (tank)
             {
-                tank.LeftThrottle = inputAsset.FindAction("Throttle.L").ReadValue<float>();
-                tank.RightThrottle = inputAsset.FindAction("Throttle.R").ReadValue<float>();
+                tank.Throttle = inputAsset.FindAction("Throttle").ReadValue<float>();
+                tank.Turning = inputAsset.FindAction("Turning").ReadValue<float>();
 
-                if (inputAsset.FindAction("Shoot").WasPerformedThisFrame()) tank.Shoot = true;
+                tank.Shoot = inputAsset.FindAction("Shoot").IsPressed();
 
-                DoTurretInput
-                (
-                    useMouse ?
-                        Mouse.current.delta.ReadValue() * mouseTurretSensitivity :
-                        inputAsset.FindAction("Turret").ReadValue<Vector2>() * gamepadTurretSensitivity
-                );
+                DoTurretInput();
             }
         }
 
-        private void DoTurretInput(Vector2 input)
+        private void DoTurretInput()
         {
-            var delta = input.normalized - lastTurretInput.normalized;
+            Vector2 screenPos;
+            if (useMouse)
+            {
+                screenPos = Mouse.current.position.ReadValue();
+            }
+            else
+            {
+                screenPos = mainCamera.WorldToScreenPoint(tank.transform.position);
+                screenPos += inputAsset.FindAction("Turret").ReadValue<Vector2>() * 200.0f;
+            }
 
-            tank.TurretInput = -Vector3.Cross(input, delta).z / Time.deltaTime;
-            lastTurretInput = input;
+            var ray = mainCamera.ScreenPointToRay(screenPos);
+            var plane = new Plane(Vector3.up, tank.turret.position);
+            if (plane.Raycast(ray, out var enter))
+            {
+                tank.AimPosition = ray.GetPoint(enter);
+            }
         }
 
         private void SetIndex(int index)
