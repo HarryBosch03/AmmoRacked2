@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88ec8da3bbc14dc09b5e8fa028018445, type: 3}
-  m_Name: Tank Settings
+  m_Name: MediumTank
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 5
   moveAccelerationTime: 3
-  turnSpeedDegrees: 140
-  turnAccelerationTime: 0.04
-  tangentialFriction: 0.2
-  maxHealth: 30
-  turretTurnSpeed: 500
+  turnSpeedDegrees: 125
+  turnAccelerationTime: 0.75
+  tangentialFriction: 0.5
+  maxHealth: 15
+  turretTurnSpeed: 300
   turretTurnAcceleration: 0.2
   projectilePrefab: {fileID: 9177665683896100977, guid: bbb9ecfb52d73d141a93df067237de4f, type: 3}
   damage:
-    damage: 1
-    knockback: 20
-  muzzleSpeed: 40
-  fireDelay: 1
-  recoilForce: 2
-  leanScale: {x: 0.5, y: -0.5}
-  leanSmoothing: 0.9
+    damage: 5
+    knockback: 2.5
+  muzzleSpeed: 50
+  fireDelay: 0.5
+  recoilForce: 0.25
+  leanScale: {x: 0.75, y: -0.75}
+  leanSmoothing: 0.777

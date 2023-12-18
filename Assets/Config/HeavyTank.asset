@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88ec8da3bbc14dc09b5e8fa028018445, type: 3}
-  m_Name: Tank Settings
+  m_Name: HeavyTank
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  moveAccelerationTime: 3
-  turnSpeedDegrees: 140
-  turnAccelerationTime: 0.04
-  tangentialFriction: 0.2
+  moveSpeed: 2.5
+  moveAccelerationTime: 1
+  turnSpeedDegrees: 75
+  turnAccelerationTime: 1
+  tangentialFriction: 1
   maxHealth: 30
-  turretTurnSpeed: 500
+  turretTurnSpeed: 100
   turretTurnAcceleration: 0.2
   projectilePrefab: {fileID: 9177665683896100977, guid: bbb9ecfb52d73d141a93df067237de4f, type: 3}
   damage:
-    damage: 1
+    damage: 10
     knockback: 20
-  muzzleSpeed: 40
-  fireDelay: 1
-  recoilForce: 2
+  muzzleSpeed: 100
+  fireDelay: 2
+  recoilForce: 4
   leanScale: {x: 0.5, y: -0.5}
-  leanSmoothing: 0.9
+  leanSmoothing: 1

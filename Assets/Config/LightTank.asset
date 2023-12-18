@@ -10,19 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88ec8da3bbc14dc09b5e8fa028018445, type: 3}
-  m_Name: XanderSlow
+  m_Name: LightTank
   m_EditorClassIdentifier: 
-  moveSpeed: 8
-  moveAccelerationTime: 1
-  turnSpeedDegrees: 150
-  turnAccelerationTime: 0.7
-  tangentialFriction: 0.275
-  maxHealth: 3
-  projectilePrefab: {fileID: 9177665683896100977, guid: bbb9ecfb52d73d141a93df067237de4f, type: 3}
+  moveSpeed: 15
+  moveAccelerationTime: 10
+  turnSpeedDegrees: 200
+  turnAccelerationTime: 0.5
+  tangentialFriction: 0.081
+  maxHealth: 10
+  turretTurnSpeed: 500
+  turretTurnAcceleration: 0.2
+  projectilePrefab: {fileID: 9177665683896100977, guid: bedb8839b81e03f438eff5ac8d01f698, type: 3}
   damage:
     damage: 1
-    knockback: 40
-  muzzleSpeed: 80
-  fireDelay: 1
-  leanScale: {x: 1.5, y: 1.5}
+    knockback: 0.25
+  muzzleSpeed: 30
+  fireDelay: 0.125
+  recoilForce: 0.01
+  leanScale: {x: 0.75, y: -0.75}
   leanSmoothing: 0.75
