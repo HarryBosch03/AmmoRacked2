@@ -60,7 +60,11 @@ namespace AmmoRacked2.Runtime.Player
             if (!Shoot) return;
             if (Time.time - lastFireTime < config.fireDelay) return;
 
-            config.projectilePrefab.Spawn(gameObject, muzzle.position, muzzle.forward * config.muzzleSpeed, config.damage);
+            var fwd = muzzle.forward;
+            fwd.y = 0.0f;
+            fwd.Normalize();
+            
+            config.projectilePrefab.Spawn(gameObject, muzzle.position, fwd * config.muzzleSpeed, config.damage);
             
             lastFireTime = Time.time;
         }

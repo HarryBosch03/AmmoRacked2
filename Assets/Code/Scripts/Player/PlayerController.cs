@@ -53,7 +53,8 @@ namespace AmmoRacked2.Runtime.Player
             {
                 DeathEvent?.Invoke(this, tank, args, invoker, point, direction);
             }
-            else if (invoker.gameObject == tank.gameObject)
+            
+            if (invoker.gameObject == this.tank.gameObject)
             {
                 KillEvent?.Invoke(this, tank, args, invoker, point, direction);
             }

@@ -1,12 +1,17 @@
 ﻿#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/core.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 
+
+CBUFFER_START(UnityPerMaterial)
+
 TEXTURE2D(_MainTex);
 SAMPLER(sampler_MainTex);
-float _Scale;
 
+float _Scale;
 float4 _HighColor;
 float4 _LowColor;
+
+CBUFFER_END
 
 static const float _Ambient = 0.5f;
 

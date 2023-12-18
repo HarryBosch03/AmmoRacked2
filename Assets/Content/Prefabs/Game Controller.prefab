@@ -93,4 +93,4 @@ MonoBehaviour:
   height: 30
   padding: 5
   minSize: 5
-  smoothing: 0.9
+  smoothing: 0.94

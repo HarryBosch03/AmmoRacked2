@@ -46,5 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputAsset: {fileID: -944628639613478452, guid: f1b1309eef7daa14ebd9f25a5ccf7878, type: 3}
   tank: {fileID: 3775916639494043030, guid: b37bdfb1e9b776649a0dc8702b295fc1, type: 3}
-  mouseTurretSensitivity: 0.15
-  gamepadTurretSensitivity: 5
+  mouseTurretSensitivity: 0.3
+  gamepadTurretSensitivity: 10
+  index: 0

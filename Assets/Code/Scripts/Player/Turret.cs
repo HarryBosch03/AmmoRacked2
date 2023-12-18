@@ -7,7 +7,7 @@ namespace AmmoRacked2.Runtime.Player
         private Tank tank;
 
         private float currentRotation;
-
+        
         public TankSettings Config => tank.config;
         
         private void Awake()
@@ -23,8 +23,8 @@ namespace AmmoRacked2.Runtime.Player
         private void LateUpdate()
         {
             var turret = tank.turret;
-            
-            turret.rotation = Quaternion.Euler(0.0f, currentRotation, 0.0f);
+
+            turret.localRotation = Quaternion.Euler(0.0f, 0.0f, currentRotation);
         }
     }
 }
