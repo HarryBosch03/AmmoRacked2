@@ -8,7 +8,7 @@ namespace AmmoRacked2.Runtime.Meta
         public float height;
         public float padding;
         public float minSize;
-        
+
         [Range(0.0f, 1.0f)]
         public float smoothing;
 
@@ -20,20 +20,28 @@ namespace AmmoRacked2.Runtime.Meta
 
         private Camera mainCamera;
 
-        private void Awake()
-        {
-            mainCamera = Camera.main;
-        }
+        private void Awake() { mainCamera = Camera.main; }
 
         private void FixedUpdate()
         {
             var orientation = Quaternion.Euler(eulerAngles);
-            
+
             var right = orientation * Vector3.right;
             var up = orientation * Vector3.up;
             var forward = orientation * Vector3.forward;
-            
+
+            var playerAlive = false;
             if (GameController.players.Count > 0)
+            {
+                foreach (var player in GameController.players)
+                {
+                    if (!player.tank.gameObject.activeSelf) continue;
+                    playerAlive = true;
+                    break;
+                }
+            }
+
+            if (playerAlive)
             {
                 min.x = float.MaxValue;
                 min.y = float.MaxValue;
@@ -44,24 +52,24 @@ namespace AmmoRacked2.Runtime.Meta
                 foreach (var player in GameController.players)
                 {
                     if (!player.tank.gameObject.activeSelf) continue;
-                    
+
                     var worldPosition = player.tank.Body.position;
                     var cameraPosition = new Vector2(Vector3.Dot(right, worldPosition), Vector3.Dot(up, worldPosition));
-                    
+
                     min.x = Mathf.Min(min.x, cameraPosition.x);
                     min.y = Mathf.Min(min.y, cameraPosition.y);
-                    
+
                     max.x = Mathf.Max(max.x, cameraPosition.x);
                     max.y = Mathf.Max(max.y, cameraPosition.y);
                 }
-
-                min -= Vector2.one * padding;
-                max += Vector2.one * padding;
-
-                smoothedMin = Vector2.Lerp(min, smoothedMin, smoothing);
-                smoothedMax = Vector2.Lerp(max, smoothedMax, smoothing);
             }
-            
+
+            min -= Vector2.one * padding;
+            max += Vector2.one * padding;
+
+            smoothedMin = Vector2.Lerp(min, smoothedMin, smoothing);
+            smoothedMax = Vector2.Lerp(max, smoothedMax, smoothing);
+
             var center = (smoothedMax + smoothedMin) * 0.5f;
             var size = (smoothedMax - smoothedMin);
             var orthoSize = Mathf.Max(size.x / mainCamera.aspect * 0.5f, size.y * 0.5f, minSize);
@@ -72,6 +80,7 @@ namespace AmmoRacked2.Runtime.Meta
             mainCamera.transform.position = position;
             mainCamera.transform.rotation = orientation;
             mainCamera.orthographicSize = orthoSize;
+            mainCamera.orthographic = true;
         }
 
         private void OnDrawGizmosSelected()

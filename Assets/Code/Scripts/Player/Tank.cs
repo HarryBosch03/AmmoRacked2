@@ -20,8 +20,8 @@ namespace AmmoRacked2.Runtime.Player
         private Vector2 smoothedLean;
         private float lastFireTime;
 
-        public float Throttle { get; set; }
-        public float Turning { get; set; }
+        public float LeftThrottle { get; set; }
+        public float RightThrottle { get; set; }
         public float TurretInput { get; set; }
         public bool Shoot { get; set; }
         
@@ -37,6 +37,11 @@ namespace AmmoRacked2.Runtime.Player
             Body.maxAngularVelocity = float.MaxValue;
 
             model = transform.Find("Model");
+
+            foreach (var t in GetComponentsInChildren<Transform>())
+            {
+                t.gameObject.layer = 8;
+            }
         }
 
         private void OnEnable()
@@ -47,7 +52,6 @@ namespace AmmoRacked2.Runtime.Player
         private void FixedUpdate()
         {
             ApplyThrottle();
-            ApplyTurning();
             ApplyTangentFriction();
             TryShoot();
 
@@ -85,29 +89,26 @@ namespace AmmoRacked2.Runtime.Player
 
         private void ApplyThrottle()
         {
-            var input = Mathf.Clamp(Throttle, -1.0f, 1.0f);
+            ApplyThrottle(1);
+            ApplyThrottle(-1);
+        }
+        
+        private void ApplyThrottle(int sign)
+        {
+            var input = Mathf.Clamp(sign == 1 ? RightThrottle : LeftThrottle, -1.0f, 1.0f);
 
             var normal = transform.forward;
             var target = input * config.moveSpeed;
-            var current = Vector3.Dot(normal, Body.velocity);
+
+            var point = transform.position + transform.right * config.turnSpeed * sign;
+            var velocity = Body.GetPointVelocity(point);
+            var current = Vector3.Dot(normal, velocity);
             
             var force = (target - current) * 2.0f / config.moveAccelerationTime;
             modelLean.y = force;
-            Body.AddForce(normal * force, ForceMode.Acceleration);
+            Body.AddForceAtPosition(normal * force, point, ForceMode.Acceleration);
         }
         
-        private void ApplyTurning()
-        {
-            var input = Mathf.Clamp(Turning, -1.0f, 1.0f);
-
-            var normal = transform.up;
-            var target = input * config.turnSpeedDegrees * Mathf.Deg2Rad;
-            var current = Vector3.Dot(normal, Body.angularVelocity);
-            
-            var torque = (target - current) * 2.0f / config.turnAccelerationTime;
-            Body.AddTorque(Vector3.up * torque, ForceMode.Acceleration);
-        }
-
         public void Damage(DamageArgs args, GameObject invoker, Vector3 point, Vector3 direction)
         {
             DamageEvent?.Invoke(this, args, invoker, point, direction);

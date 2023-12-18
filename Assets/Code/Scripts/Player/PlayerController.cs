@@ -70,8 +70,8 @@ namespace AmmoRacked2.Runtime.Player
         {
             if (tank)
             {
-                tank.Throttle = inputAsset.FindAction("Throttle").ReadValue<float>();
-                tank.Turning = inputAsset.FindAction("Turning").ReadValue<float>();
+                tank.LeftThrottle = inputAsset.FindAction("Throttle.L").ReadValue<float>();
+                tank.RightThrottle = inputAsset.FindAction("Throttle.R").ReadValue<float>();
 
                 if (inputAsset.FindAction("Shoot").WasPerformedThisFrame()) tank.Shoot = true;
 
