@@ -3,7 +3,17 @@ guid: c692d85328f894f48ab792d411d82420
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Outline
+    second: {fileID: 2100000, guid: 7abfcf41bc8d34d4490bc99c4dd068d2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tonket
+    second: {fileID: 2100000, guid: 67b83e5a9096a3448802c0086457248d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -52,7 +62,7 @@ ModelImporter:
     keepQuads: 0
     weldVertices: 1
     bakeAxisConversion: 0
-    preserveHierarchy: 0
+    preserveHierarchy: 1
     skinWeightsMode: 0
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
