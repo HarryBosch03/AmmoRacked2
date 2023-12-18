@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using AmmoRacked2.Runtime.Health;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +9,7 @@ namespace AmmoRacked2.Runtime.Player
     public class PlayerController : GenericController
     {
         public InputActionAsset inputAsset;
+        [TextArea] public string debug;
 
         [Space]
         public float mouseTurretSensitivity;
@@ -18,7 +17,8 @@ namespace AmmoRacked2.Runtime.Player
 
         private bool useMouse;
 
-        public static readonly List<InputDevice> Devices = new();
+        public IReadOnlyList<InputDevice> Devices => inputAsset.devices;
+        public bool Disconnected => Devices.Count == 0;
 
         protected override void Awake()
         {
@@ -83,7 +83,7 @@ namespace AmmoRacked2.Runtime.Player
             }
         }
 
-        private void SetDevice(InputDevice device)
+        public void SetDevice(InputDevice device)
         {
             if (device == Keyboard.current || device == Mouse.current)
             {
@@ -96,16 +96,11 @@ namespace AmmoRacked2.Runtime.Player
             }
         }
         
-        public bool TrySpawnPlayer(InputDevice device, out PlayerController player)
+        public PlayerController SpawnPlayer(InputDevice device)
         {
-            player = null;
-            if (Devices.Contains(device)) return false;
-
-            Devices.Add(device);
-
-            player = Instantiate(this);
+            var player = Instantiate(this);
             player.SetDevice(device);
-            return true;
+            return player;
         }
     }
 }
