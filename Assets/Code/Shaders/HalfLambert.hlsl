@@ -1,14 +1,19 @@
 ﻿#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/core.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 
+
+CBUFFER_START(UnityPerMaterial)
+
 TEXTURE2D(_MainTex);
 SAMPLER(sampler_MainTex);
-float _Scale;
 
+float _Scale;
 float4 _HighColor;
 float4 _LowColor;
 
-static const float _Ambient = 0.3f;
+CBUFFER_END
+
+static const float _Ambient = 0.5f;
 
 struct Attributes
 {
@@ -52,7 +57,7 @@ Varyings vert(Attributes input)
 
 float Lighting(Varyings input, Light light)
 {
-    return saturate(dot(light.direction, input.normalWS) * 0.5 + 0.5) * light.distanceAttenuation;
+    return saturate(dot(light.direction, input.normalWS) * light.distanceAttenuation * light.shadowAttenuation);
 }
 
 float4 Triplanar(TEXTURE2D_PARAM(_tex, sampler_tex), Varyings input)
@@ -73,13 +78,15 @@ float Lighting(Varyings input)
 {
     float lighting = 0.0f;
 
-    Light mainLight = GetMainLight();
+    float4 shadowCoords = TransformWorldToShadowCoord(input.positionWS);
+    
+    Light mainLight = GetMainLight(shadowCoords);
     lighting += Lighting(input, mainLight);
 
     uint lightCount = GetAdditionalLightsCount();
     for (uint lightIndex = 0u; lightIndex < lightCount; ++lightIndex)
     {
-        Light light = GetAdditionalLight(lightIndex, input.positionWS);
+        Light light = GetAdditionalLight(lightIndex, input.positionWS, shadowCoords);
         lighting += Lighting(input, light);
     }
 
