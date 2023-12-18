@@ -575,7 +575,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eulerAngles: {x: 60, y: -30, z: 0}
   height: 30
-  expand: 0
+  padding: 5
   minSize: 5
   smoothing: 0
 --- !u!1 &1983449062

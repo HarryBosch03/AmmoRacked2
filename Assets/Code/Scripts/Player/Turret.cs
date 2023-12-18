@@ -6,7 +6,7 @@ namespace AmmoRacked2.Runtime.Player
     {
         private Tank tank;
 
-        private Vector2 currentRotation;
+        private float currentRotation;
 
         public TankSettings Config => tank.config;
         
@@ -15,18 +15,16 @@ namespace AmmoRacked2.Runtime.Player
             tank = GetComponentInParent<Tank>();
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
-            currentRotation += tank.TurretInput * Config.turnSensitivity * Time.deltaTime;
+            currentRotation += tank.TurretInput * Time.deltaTime;
         }
 
         private void LateUpdate()
         {
-            var turret0 = tank.turret0;
-            var turret1 = tank.turret1;
+            var turret = tank.turret;
             
-            turret0.rotation = Quaternion.Euler(0.0f, currentRotation.x, 0.0f);
-            turret1.rotation = Quaternion.Euler(currentRotation.y, currentRotation.x, 0.0f);
+            turret.rotation = Quaternion.Euler(0.0f, currentRotation, 0.0f);
         }
     }
 }

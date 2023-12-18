@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Shoot",
+                    "type": "Button",
+                    "id": "4360e31d-b398-4143-973d-7668591f4931",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -69,7 +78,7 @@
                 },
                 {
                     "name": "Gamepad",
-                    "id": "d725c5fe-1c98-4061-9d98-7cf6f01fce98",
+                    "id": "6b84f4bb-f03f-44ea-8210-1aab33dcef82",
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
@@ -80,8 +89,8 @@
                 },
                 {
                     "name": "negative",
-                    "id": "d1338e36-c3a3-44f7-853b-ba7d149dbbc1",
-                    "path": "<Gamepad>/leftTrigger",
+                    "id": "aa8c0f8a-2ba7-48cb-890e-d8509ea4d2da",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -91,8 +100,8 @@
                 },
                 {
                     "name": "positive",
-                    "id": "8f609ea7-62b8-4bf7-8734-c58de0a878c6",
-                    "path": "<Gamepad>/rightTrigger",
+                    "id": "34750481-9be8-4bae-a904-271aea30e717",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -152,6 +161,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Turret",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9cbdad3e-a89d-434d-b694-a5b1a49faeb8",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e8e055ea-fdc9-4ec3-9d42-76d1ab397dc4",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

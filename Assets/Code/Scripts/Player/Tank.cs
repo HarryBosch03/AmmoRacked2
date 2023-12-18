@@ -1,22 +1,29 @@
-﻿using UnityEngine;
+﻿using System;
+using AmmoRacked2.Runtime.Health;
+using UnityEngine;
 
 namespace AmmoRacked2.Runtime.Player
 {
     [SelectionBase, DisallowMultipleComponent]
     [RequireComponent(typeof(Rigidbody))]
-    public class Tank : MonoBehaviour
+    public class Tank : MonoBehaviour, IDamageable
     {
         public TankSettings config;
-        public Transform turret0;
-        public Transform turret1;
+        public GameObject deadTankPrefab;
+        public Transform turret;
+        public Transform muzzle;
+
+        private int currentHealth;
         
         private Transform model;
         private Vector2 modelLean;
         private Vector2 smoothedLean;
+        private float lastFireTime;
 
         public float Throttle { get; set; }
         public float Turning { get; set; }
-        public Vector2 TurretInput { get; set; }
+        public float TurretInput { get; set; }
+        public bool Shoot { get; set; }
         
         public Rigidbody Body { get; private set; }
         
@@ -29,19 +36,30 @@ namespace AmmoRacked2.Runtime.Player
             model = transform.Find("Model");
         }
 
+        private void OnEnable()
+        {
+            currentHealth = config.maxHealth;
+        }
+
         private void FixedUpdate()
         {
             ApplyThrottle();
             ApplyTurning();
             ApplyTangentFriction();
-            TurnTurret();
+            TryShoot();
 
             smoothedLean = Vector2.Lerp(modelLean, smoothedLean, config.leanSmoothing);
+            Shoot = false;
         }
 
-        private void TurnTurret()
+        private void TryShoot()
         {
+            if (!Shoot) return;
+            if (Time.time - lastFireTime < config.fireDelay) return;
+
+            config.projectilePrefab.Spawn(gameObject, muzzle.position, muzzle.forward * config.muzzleSpeed, config.damage);
             
+            lastFireTime = Time.time;
         }
 
         private void LateUpdate()
@@ -81,6 +99,33 @@ namespace AmmoRacked2.Runtime.Player
             
             var torque = (target - current) * 2.0f / config.turnAccelerationTime;
             Body.AddTorque(Vector3.up * torque, ForceMode.Acceleration);
+        }
+
+        public void Damage(DamageArgs args, GameObject invoker, Vector3 point, Vector3 direction)
+        {
+            currentHealth -= args.damage;
+            Body.AddForce(direction.normalized * args.knockback, ForceMode.Impulse);
+
+            if (currentHealth <= 0)
+            {
+                Die(args, invoker, point, direction);
+            }
+        }
+
+        private void Die(DamageArgs args, GameObject invoker, Vector3 point, Vector3 direction)
+        {
+            if (deadTankPrefab)
+            {
+                var instance = Instantiate(deadTankPrefab, transform.position, transform.rotation);
+                var body = instance.GetComponent<Rigidbody>();
+                if (body)
+                {
+                    body.velocity = this.Body.velocity;
+                    body.angularVelocity = this.Body.angularVelocity;
+                }
+            }
+            
+            gameObject.SetActive(false);
         }
     }
 }

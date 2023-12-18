@@ -1,4 +1,5 @@
 ﻿
+using AmmoRacked2.Runtime.Health;
 using UnityEngine;
 
 namespace AmmoRacked2.Runtime.Player
@@ -14,7 +15,13 @@ namespace AmmoRacked2.Runtime.Player
         public float tangentialFriction = 0.8f;
 
         [Space]
-        public Vector2 turnSensitivity;
+        public int maxHealth;
+
+        [Space]
+        public Projectile projectilePrefab;
+        public DamageArgs damage;
+        public float muzzleSpeed;
+        public float fireDelay;
         
         [Space]
         public Vector2 leanScale = Vector2.one;

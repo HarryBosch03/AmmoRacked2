@@ -6,7 +6,7 @@ namespace AmmoRacked2.Runtime.Meta
     {
         public Vector3 eulerAngles;
         public float height;
-        public float expand;
+        public float padding;
         public float minSize;
         
         [Range(0.0f, 1.0f)]
@@ -53,8 +53,8 @@ namespace AmmoRacked2.Runtime.Meta
                     max.y = Mathf.Max(max.y, cameraPosition.y);
                 }
 
-                min -= Vector2.one * expand;
-                max += Vector2.one * expand;
+                min -= Vector2.one * padding;
+                max += Vector2.one * padding;
 
                 smoothedMin = Vector2.Lerp(min, smoothedMin, smoothing);
                 smoothedMax = Vector2.Lerp(max, smoothedMax, smoothing);

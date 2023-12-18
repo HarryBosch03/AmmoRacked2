@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,10 +8,14 @@ namespace AmmoRacked2.Runtime.Player
     [DisallowMultipleComponent]
     public class PlayerController : MonoBehaviour
     {
-        public Tank tank;
-        public float controllerTurretSensitivity;
-        
         public InputActionAsset inputAsset;
+        public Tank tank;
+        
+        [Space]
+        public float mouseTurretSensitivity;
+        public float gamepadTurretSensitivity;
+
+        private bool useMouse;
         private int index;
 
         private Vector2 lastTurretInput;
@@ -28,15 +31,9 @@ namespace AmmoRacked2.Runtime.Player
             tank.gameObject.SetActive(false);
         }
 
-        private void OnEnable()
-        {
-            inputAsset.Enable();
-        }
+        private void OnEnable() { inputAsset.Enable(); }
 
-        private void OnDisable()
-        {
-            inputAsset.Disable();
-        }
+        private void OnDisable() { inputAsset.Disable(); }
 
         private void OnDestroy()
         {
@@ -50,33 +47,35 @@ namespace AmmoRacked2.Runtime.Player
             {
                 tank.Throttle = inputAsset.FindAction("Throttle").ReadValue<float>();
                 tank.Turning = inputAsset.FindAction("Turning").ReadValue<float>();
-                DoTurretInput();
+
+                if (inputAsset.FindAction("Shoot").WasPerformedThisFrame()) tank.Shoot = true;
+
+                DoTurretInput
+                (
+                    useMouse ?
+                        Mouse.current.delta.ReadValue() * mouseTurretSensitivity :
+                        inputAsset.FindAction("Turret").ReadValue<Vector2>() * gamepadTurretSensitivity
+                );
             }
         }
 
-        private void DoTurretInput()
+        private void DoTurretInput(Vector2 input)
         {
-            var input = inputAsset.FindAction("Turret").ReadValue<Vector2>();
+            var delta = input.normalized - lastTurretInput.normalized;
 
-            var a0 = Mathf.Atan2(lastTurretInput.y, lastTurretInput.x);
-            var a1 = Mathf.Atan2(input.y, input.x);
-            var da = Mathf.DeltaAngle(a0 * Mathf.Rad2Deg, a1 * Mathf.Rad2Deg) * Mathf.Deg2Rad;
-
-            var output = Vector2.zero;
-            output.x = (float.IsFinite(da) ? -da * input.magnitude : 0.0f) * controllerTurretSensitivity;
-
-            tank.TurretInput = output;
+            tank.TurretInput = -Vector3.Cross(input, delta).z / Time.deltaTime;
             lastTurretInput = input;
         }
 
         private void SetIndex(int index)
         {
             this.index = index;
-            
+
             var device = Devices[index];
             if (device == Keyboard.current || device == Mouse.current)
             {
                 inputAsset.devices = new InputDevice[] { Keyboard.current, Mouse.current };
+                useMouse = true;
             }
             else
             {
@@ -91,10 +90,10 @@ namespace AmmoRacked2.Runtime.Player
         {
             player = null;
             if (Devices.Contains(device)) return false;
-            
+
             var index = Devices.Count;
             Devices.Add(device);
-            
+
             player = Instantiate(this);
             player.SetIndex(index);
             return true;
