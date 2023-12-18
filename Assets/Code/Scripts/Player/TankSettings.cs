@@ -23,6 +23,7 @@ namespace AmmoRacked2.Runtime.Player
         public Projectile projectilePrefab;
         public DamageArgs damage;
         public float muzzleSpeed;
+        public float projectileGravity = 0.3f;
         public float fireDelay;
         public float recoilForce;
         

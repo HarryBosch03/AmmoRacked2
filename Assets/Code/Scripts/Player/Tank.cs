@@ -69,7 +69,7 @@ namespace AmmoRacked2.Runtime.Player
             fwd.y = 0.0f;
             fwd.Normalize();
             
-            config.projectilePrefab.Spawn(gameObject, muzzle.position, Body.velocity + fwd * config.muzzleSpeed, config.damage);
+            config.projectilePrefab.Spawn(gameObject, muzzle.position, Body.velocity + fwd * config.muzzleSpeed, config.damage, config.projectileGravity);
             
             Body.AddForce(-muzzle.forward * config.recoilForce, ForceMode.Impulse);
             

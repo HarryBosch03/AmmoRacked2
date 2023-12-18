@@ -10,14 +10,16 @@ namespace AmmoRacked2.Runtime
         
         private Vector3 position, velocity, force;
         private DamageArgs damage;
+        private float gravityScale;
 
         private GameObject owner;
         private Transform hitFX;
         private Transform detach;
 
-        public Projectile Spawn(GameObject owner, Vector3 position, Vector3 velocity, DamageArgs damage)
+        public Projectile Spawn(GameObject owner, Vector3 position, Vector3 velocity, DamageArgs damage, float gravityScale)
         {
             var instance = Instantiate(this, position, Quaternion.LookRotation(velocity, Vector3.up));
+            instance.gravityScale = gravityScale;
             instance.owner = owner;
             instance.damage = damage;
             instance.position = position;
@@ -84,7 +86,7 @@ namespace AmmoRacked2.Runtime
             position += velocity * Time.deltaTime;
             velocity += force * Time.deltaTime;
             
-            force = Physics.gravity;
+            force = Physics.gravity * gravityScale;
         }
 
         private void OnDrawGizmosSelected()
