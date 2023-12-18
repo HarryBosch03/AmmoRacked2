@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ec8da3bbc14dc09b5e8fa028018445, type: 3}
   m_Name: XanderTankSettings
   m_EditorClassIdentifier: 
-  moveSpeed: 12
+  moveSpeed: 13
   moveAccelerationTime: 1
-  turnSpeedDegrees: 200
+  turnSpeedDegrees: 240
   turnAccelerationTime: 0.3
   tangentialFriction: 0.115
   maxHealth: 3
