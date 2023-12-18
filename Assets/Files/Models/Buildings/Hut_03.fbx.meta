@@ -1,9 +1,29 @@
 fileFormatVersion: 2
-guid: 7e4c14eee4fc6d64bbf7ef49fa7e9618
+guid: fa1298d211d44e941bb80b3413144e29
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Door
+    second: {fileID: 2100000, guid: ecebc803cb12d3c40b35af4b01f3e57e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_HutBase
+    second: {fileID: 2100000, guid: 4c254d4cff3b4734581c3c036f10d79d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Wood
+    second: {fileID: 2100000, guid: 0458bf9cff09bc74a8b4096e688e6ec9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat_ShadeCloth
+    second: {fileID: 2100000, guid: bd89efb70eca3c64ea2a47f7529f8882, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -52,7 +72,7 @@ ModelImporter:
     keepQuads: 0
     weldVertices: 1
     bakeAxisConversion: 0
-    preserveHierarchy: 1
+    preserveHierarchy: 0
     skinWeightsMode: 0
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
