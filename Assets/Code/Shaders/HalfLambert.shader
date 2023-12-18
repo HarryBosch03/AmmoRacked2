@@ -3,6 +3,8 @@
     Properties
     {
         _MainTex("Main Texture", 2D) = "white" {}
+        [Normal] _NormalMap("Normal Map", 2D) = "bump" {}
+        _NormalStrength("Normal Strength", float) = 1.0
         _Scale("Texture Scale", float) = 1
         _HighColor("High Color", Color) = (1, 1, 1, 1)
         _LowColor("Low Color", Color) = (0.8, 0.8, 0.8, 1)
