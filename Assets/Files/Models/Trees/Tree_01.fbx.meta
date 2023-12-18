@@ -1,9 +1,19 @@
 fileFormatVersion: 2
-guid: 7e4c14eee4fc6d64bbf7ef49fa7e9618
+guid: 568025378d60bf44fba2d6d911c1fa85
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TreeBark_MAT
+    second: {fileID: 2100000, guid: 3c6b770cfd1da3346b0d46ad011952c6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TreeLeaves_MAT
+    second: {fileID: 2100000, guid: a87a5db0c0062b64ab51d332ba2b06ee, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -52,7 +62,7 @@ ModelImporter:
     keepQuads: 0
     weldVertices: 1
     bakeAxisConversion: 0
-    preserveHierarchy: 1
+    preserveHierarchy: 0
     skinWeightsMode: 0
     maxBonesPerVertex: 4
     minBoneWeight: 0.001

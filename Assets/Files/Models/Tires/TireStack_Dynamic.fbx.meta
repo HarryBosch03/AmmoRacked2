@@ -1,9 +1,19 @@
 fileFormatVersion: 2
-guid: 7e4c14eee4fc6d64bbf7ef49fa7e9618
+guid: 892be76633a6fb345be42399173ffe2e
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TireStripe_MAT
+    second: {fileID: 2100000, guid: 171e862c368debe4e938af85258ab1d5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tire_MAT
+    second: {fileID: 2100000, guid: bb5eaffc3457288408f80a8a7c14170c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -52,7 +62,7 @@ ModelImporter:
     keepQuads: 0
     weldVertices: 1
     bakeAxisConversion: 0
-    preserveHierarchy: 1
+    preserveHierarchy: 0
     skinWeightsMode: 0
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
