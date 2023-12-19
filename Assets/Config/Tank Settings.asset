@@ -17,7 +17,7 @@ MonoBehaviour:
   turnSpeedDegrees: 140
   turnAccelerationTime: 0.04
   tangentialFriction: 0.2
-  maxHealth: 1
+  maxHealth: 30
   turretTurnSpeed: 500
   turretTurnAcceleration: 0.2
   projectilePrefab: {fileID: 9177665683896100977, guid: bbb9ecfb52d73d141a93df067237de4f, type: 3}
