@@ -10,6 +10,9 @@ namespace AmmoRacked2.Runtime.Utility
     {
         public int health;
         public GameObject propSwap;
+        [Range(0.0f, 1.0f)]
+        public float knockbackScale = 0.1f;
+        public bool dieOnContact;
 
         private bool destroyed;
         private SinkWithDelay sink;
@@ -28,20 +31,38 @@ namespace AmmoRacked2.Runtime.Utility
 
             if (health <= 0.0f)
             {
-                if (propSwap)
-                {
-                    var instance = Instantiate(propSwap, transform.position, transform.rotation);
-                    foreach (var rb in instance.GetComponentsInChildren<Rigidbody>())
-                    {
-                        rb.AddForce(direction.normalized * args.knockback, ForceMode.Impulse);
-                    }
-                    
-                    Destroy(gameObject);
-                }
-                else if (sink) sink.enabled = true;
-                else Destroy(gameObject);
-                destroyed = true;
+                Die(args, direction);
             }
+        }
+
+        private void Die(DamageArgs args, Vector3 direction)
+        {
+            if (propSwap)
+            {
+                var instance = Instantiate(propSwap, transform.position, transform.rotation);
+                foreach (var rb in instance.GetComponentsInChildren<Rigidbody>())
+                {
+                    rb.AddForce(direction.normalized * args.knockback * knockbackScale, ForceMode.VelocityChange);
+                }
+
+                Destroy(gameObject);
+            }
+            else if (sink) sink.enabled = true;
+            else Destroy(gameObject);
+
+            destroyed = true;
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (!dieOnContact) return;
+            
+            var damageArgs = new DamageArgs
+            {
+                damage = health,
+                knockback = collision.relativeVelocity.magnitude,
+            };
+            Damage(damageArgs, collision.rigidbody.gameObject, transform.position, collision.relativeVelocity.normalized);
         }
     }
 }
