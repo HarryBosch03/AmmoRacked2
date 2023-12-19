@@ -17,6 +17,12 @@ namespace AmmoRacked2.Runtime.Player
 
         private void Update()
         {
+            if (Config.lockTurret)
+            {
+                currentRotation = 0.0f;
+                return;
+            }
+            
             var current = tank.turret.up;
             var target = tank.AimPosition - tank.transform.position;
             

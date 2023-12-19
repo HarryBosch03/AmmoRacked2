@@ -4697,19 +4697,19 @@ Transform:
   - {fileID: 1373689057}
   - {fileID: 962743451}
   - {fileID: 825082780}
+  - {fileID: 2127992539}
   - {fileID: 581030115}
   - {fileID: 19094495}
   - {fileID: 212901611}
-  - {fileID: 1184538790}
   - {fileID: 644921907}
-  - {fileID: 2127992539}
-  - {fileID: 65826014}
-  - {fileID: 1257629044}
+  - {fileID: 1184538790}
   - {fileID: 1742396389}
   - {fileID: 2068138443}
   - {fileID: 11818520}
+  - {fileID: 65826014}
   - {fileID: 868218359}
   - {fileID: 922050265}
+  - {fileID: 1257629044}
   - {fileID: 2023777631}
   m_Father: {fileID: 1508747885}
   m_RootOrder: 10
@@ -39658,6 +39658,22 @@ PrefabInstance:
     - target: {fileID: 6254959344179866395, guid: a25f181369c96894fb30b178aa8e9adb, type: 3}
       propertyPath: m_Name
       value: GameSceneGeneral
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202991211280327382, guid: a25f181369c96894fb30b178aa8e9adb, type: 3}
+      propertyPath: spawnMax.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202991211280327382, guid: a25f181369c96894fb30b178aa8e9adb, type: 3}
+      propertyPath: spawnMax.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202991211280327382, guid: a25f181369c96894fb30b178aa8e9adb, type: 3}
+      propertyPath: spawnMin.x
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202991211280327382, guid: a25f181369c96894fb30b178aa8e9adb, type: 3}
+      propertyPath: spawnMin.y
+      value: -20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a25f181369c96894fb30b178aa8e9adb, type: 3}

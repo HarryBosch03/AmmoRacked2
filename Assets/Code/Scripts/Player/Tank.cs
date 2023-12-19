@@ -14,6 +14,9 @@ namespace AmmoRacked2.Runtime.Player
         public Transform turret;
         public Transform muzzle;
 
+        [Space]
+        public Renderer[] coloredRenderers = new Renderer[0];
+
         private int currentHealth;
         
         private Transform model;
@@ -65,7 +68,7 @@ namespace AmmoRacked2.Runtime.Player
             if (!Shoot) return;
             if (Time.time - lastFireTime < config.fireDelay) return;
 
-            var fwd = muzzle.forward;
+            var fwd = muzzle.up;
             fwd.y = 0.0f;
             fwd.Normalize();
             
@@ -144,6 +147,25 @@ namespace AmmoRacked2.Runtime.Player
             }
             
             gameObject.SetActive(false);
+        }
+
+        public void SetColor(Color primaryColor)
+        {
+            const string key0 = "_HighColor";
+            const string key1 = "_LowColor";
+            const float scaleDown = 0.4f;
+
+            var propertyBlock = new MaterialPropertyBlock();
+            propertyBlock.SetColor(key0, primaryColor);
+            
+            Color.RGBToHSV(primaryColor, out var h, out _, out var v);
+            var secondaryColor = Color.HSVToRGB(h, 1.0f, v * scaleDown);
+            propertyBlock.SetColor(key1, secondaryColor);
+
+            foreach (var r in coloredRenderers)
+            {
+                r.SetPropertyBlock(propertyBlock);
+            }
         }
     }
 }

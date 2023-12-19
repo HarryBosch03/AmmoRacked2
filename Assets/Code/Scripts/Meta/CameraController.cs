@@ -31,41 +31,46 @@ namespace AmmoRacked2.Runtime.Meta
             var forward = orientation * Vector3.forward;
 
             var playerAlive = false;
-            if (GameController.players.Count > 0)
+            var gameController = GameController.ActiveGameController;
+
+            if (gameController)
             {
-                foreach (var player in GameController.players)
+                if (gameController.players.Count > 0)
                 {
-                    if (!player.tank.gameObject.activeSelf) continue;
-                    playerAlive = true;
-                    break;
+                    foreach (var player in gameController.players)
+                    {
+                        if (!player.tank.gameObject.activeSelf) continue;
+                        playerAlive = true;
+                        break;
+                    }
+                }
+
+                if (playerAlive)
+                {
+                    min.x = float.MaxValue;
+                    min.y = float.MaxValue;
+
+                    max.x = float.MinValue;
+                    max.y = float.MinValue;
+
+                    foreach (var player in gameController.players)
+                    {
+                        if (!player.tank.gameObject.activeSelf) continue;
+
+                        var worldPosition = player.tank.Body.position;
+                        var cameraPosition = new Vector2(Vector3.Dot(right, worldPosition), Vector3.Dot(up, worldPosition));
+
+                        min.x = Mathf.Min(min.x, cameraPosition.x);
+                        min.y = Mathf.Min(min.y, cameraPosition.y);
+
+                        max.x = Mathf.Max(max.x, cameraPosition.x);
+                        max.y = Mathf.Max(max.y, cameraPosition.y);
+                    }
+
+                    min -= Vector2.one * padding;
+                    max += Vector2.one * padding;
                 }
             }
-
-            if (playerAlive)
-            {
-                min.x = float.MaxValue;
-                min.y = float.MaxValue;
-
-                max.x = float.MinValue;
-                max.y = float.MinValue;
-
-                foreach (var player in GameController.players)
-                {
-                    if (!player.tank.gameObject.activeSelf) continue;
-
-                    var worldPosition = player.tank.Body.position;
-                    var cameraPosition = new Vector2(Vector3.Dot(right, worldPosition), Vector3.Dot(up, worldPosition));
-
-                    min.x = Mathf.Min(min.x, cameraPosition.x);
-                    min.y = Mathf.Min(min.y, cameraPosition.y);
-
-                    max.x = Mathf.Max(max.x, cameraPosition.x);
-                    max.y = Mathf.Max(max.y, cameraPosition.y);
-                }
-            }
-
-            min -= Vector2.one * padding;
-            max += Vector2.one * padding;
 
             smoothedMin = Vector2.Lerp(min, smoothedMin, smoothing);
             smoothedMax = Vector2.Lerp(max, smoothedMax, smoothing);

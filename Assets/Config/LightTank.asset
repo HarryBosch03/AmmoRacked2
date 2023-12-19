@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: LightTank
   m_EditorClassIdentifier: 
   moveSpeed: 15
-  moveAccelerationTime: 10
+  moveAccelerationTime: 12
   turnSpeedDegrees: 200
   turnAccelerationTime: 0.5
   tangentialFriction: 0.081
   maxHealth: 10
+  lockTurret: 0
   turretTurnSpeed: 500
   turretTurnAcceleration: 0.2
   projectilePrefab: {fileID: 9177665683896100977, guid: bedb8839b81e03f438eff5ac8d01f698, type: 3}
@@ -25,6 +26,7 @@ MonoBehaviour:
     damage: 1
     knockback: 0.25
   muzzleSpeed: 30
+  projectileGravity: 0.3
   fireDelay: 0.125
   recoilForce: 0.01
   leanScale: {x: 0.75, y: -0.75}
