@@ -18,6 +18,8 @@ namespace AmmoRacked2.Runtime.UI
         private void Start()
         {
             var scores = transform.Find("Scores");
+            scores.gameObject.SetActive(true);
+            
             scoreTrackers = new ScoreTracker[scores.childCount];
             for (var i = 0; i < scoreTrackers.Length; i++)
             {

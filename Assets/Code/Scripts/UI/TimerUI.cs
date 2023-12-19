@@ -15,6 +15,8 @@ namespace AmmoRacked2.Runtime.UI
         {
             root = transform.Find("Timer");
             text = root.Find<TMP_Text>("Text");
+            
+            root.gameObject.SetActive(true);
         }
 
         private void OnEnable()
@@ -35,7 +37,7 @@ namespace AmmoRacked2.Runtime.UI
                 enabled = false;
             }
             
-            var timespan = TimeSpan.FromSeconds(controller.GameTimeLeft);
+            var timespan = TimeSpan.FromSeconds(Mathf.Max(0.0f, controller.GameTimeLeft));
             text.text = timespan.ToString("%m\\:ss");
         }
     }
