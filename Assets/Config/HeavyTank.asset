@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ec8da3bbc14dc09b5e8fa028018445, type: 3}
   m_Name: HeavyTank
   m_EditorClassIdentifier: 
-  moveSpeed: 2.5
+  moveSpeed: 2.75
   moveAccelerationTime: 1.5
   turnSpeedDegrees: 85
   turnAccelerationTime: 1
@@ -28,6 +28,6 @@ MonoBehaviour:
   muzzleSpeed: 100
   projectileGravity: 2
   fireDelay: 2
-  recoilForce: 5
+  recoilForce: 3
   leanScale: {x: 0.5, y: -0.5}
   leanSmoothing: 1

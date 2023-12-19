@@ -131,6 +131,63 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &445117772446720746
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5090384609780246220}
+    m_Modifications:
+    - target: {fileID: 3521043806524390384, guid: 092f3ce0382ad85419f22073d8f80e65, type: 3}
+      propertyPath: m_Name
+      value: Large-Explosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 3521043806524390385, guid: 092f3ce0382ad85419f22073d8f80e65, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3521043806524390385, guid: 092f3ce0382ad85419f22073d8f80e65, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3521043806524390385, guid: 092f3ce0382ad85419f22073d8f80e65, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3521043806524390385, guid: 092f3ce0382ad85419f22073d8f80e65, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3521043806524390385, guid: 092f3ce0382ad85419f22073d8f80e65, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3521043806524390385, guid: 092f3ce0382ad85419f22073d8f80e65, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3521043806524390385, guid: 092f3ce0382ad85419f22073d8f80e65, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3521043806524390385, guid: 092f3ce0382ad85419f22073d8f80e65, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3521043806524390385, guid: 092f3ce0382ad85419f22073d8f80e65, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3521043806524390385, guid: 092f3ce0382ad85419f22073d8f80e65, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3521043806524390385, guid: 092f3ce0382ad85419f22073d8f80e65, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 092f3ce0382ad85419f22073d8f80e65, type: 3}
 --- !u!1001 &5577531620416787628
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -140,7 +197,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3576562663778761281, guid: ce36d40490fa22b44bb3117aee472bbb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698901383945691183, guid: ce36d40490fa22b44bb3117aee472bbb, type: 3}
+      propertyPath: InitialModule.startColor.minColor.b
+      value: 0.14324494
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698901383945691183, guid: ce36d40490fa22b44bb3117aee472bbb, type: 3}
+      propertyPath: InitialModule.startColor.minColor.g
+      value: 0.25455126
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698901383945691183, guid: ce36d40490fa22b44bb3117aee472bbb, type: 3}
+      propertyPath: InitialModule.startColor.minColor.r
+      value: 0.3490566
       objectReference: {fileID: 0}
     - target: {fileID: 4371973530999955089, guid: ce36d40490fa22b44bb3117aee472bbb, type: 3}
       propertyPath: m_RootOrder
@@ -204,6 +273,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9177665683896100978}
     m_Modifications:
+    - target: {fileID: 3576562663778761281, guid: ce36d40490fa22b44bb3117aee472bbb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4371973530999955089, guid: ce36d40490fa22b44bb3117aee472bbb, type: 3}
       propertyPath: m_RootOrder
       value: 2

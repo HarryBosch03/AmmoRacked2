@@ -21,7 +21,7 @@ MonoBehaviour:
   lockTurret: 0
   turretTurnSpeed: 300
   turretTurnAcceleration: 0.2
-  projectilePrefab: {fileID: 9177665683896100977, guid: bbb9ecfb52d73d141a93df067237de4f, type: 3}
+  projectilePrefab: {fileID: 9177665683896100977, guid: c6e3fadbd7599954bba7d2caf265da81, type: 3}
   damage:
     damage: 5
     knockback: 2.5
