@@ -30,7 +30,12 @@ namespace AmmoRacked2.Runtime.Utility
             {
                 if (propSwap)
                 {
-                    Instantiate(propSwap, transform.position, transform.rotation);
+                    var instance = Instantiate(propSwap, transform.position, transform.rotation);
+                    foreach (var rb in instance.GetComponentsInChildren<Rigidbody>())
+                    {
+                        rb.AddForce(direction.normalized * args.knockback, ForceMode.Impulse);
+                    }
+                    
                     Destroy(gameObject);
                 }
                 else if (sink) sink.enabled = true;
