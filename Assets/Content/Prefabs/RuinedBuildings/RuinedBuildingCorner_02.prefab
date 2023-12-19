@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 1114798875982562092}
   - component: {fileID: 4095835013813963913}
   - component: {fileID: 2248320372546861123}
+  - component: {fileID: 1911848361903442457}
+  - component: {fileID: 8775591210205996444}
   m_Layer: 0
   m_Name: RuinedBuildingCorner_02
   m_TagString: Untagged
@@ -25,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 302690084912781718}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.39, y: -0.00000023841858, z: 0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -84,3 +86,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1911848361903442457
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302690084912781718}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.46668023, y: 3.503217, z: 4.791515}
+  m_Center: {x: 1.3709108, y: 1.7516085, z: -0.18977119}
+--- !u!65 &8775591210205996444
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302690084912781718}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.832298, y: 2.5184703, z: 0.53339523}
+  m_Center: {x: -0.15642993, y: 1.2592351, z: 2.3274837}

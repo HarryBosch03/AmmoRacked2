@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88ec8da3bbc14dc09b5e8fa028018445, type: 3}
+  m_Name: HeavyTank
+  m_EditorClassIdentifier: 
+  moveSpeed: 2.5
+  moveAccelerationTime: 1
+  turnSpeedDegrees: 75
+  turnAccelerationTime: 1
+  tangentialFriction: 1
+  maxHealth: 30
+  turretTurnSpeed: 100
+  turretTurnAcceleration: 0.2
+  projectilePrefab: {fileID: 9177665683896100977, guid: bbb9ecfb52d73d141a93df067237de4f, type: 3}
+  damage:
+    damage: 10
+    knockback: 10
+  muzzleSpeed: 100
+  projectileGravity: 0.3
+  fireDelay: 2
+  recoilForce: 4
+  leanScale: {x: 0.5, y: -0.5}
+  leanSmoothing: 1

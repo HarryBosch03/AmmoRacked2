@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88ec8da3bbc14dc09b5e8fa028018445, type: 3}
+  m_Name: LightTank
+  m_EditorClassIdentifier: 
+  moveSpeed: 15
+  moveAccelerationTime: 12
+  turnSpeedDegrees: 200
+  turnAccelerationTime: 0.5
+  tangentialFriction: 0.081
+  maxHealth: 10
+  lockTurret: 0
+  turretTurnSpeed: 500
+  turretTurnAcceleration: 0.2
+  projectilePrefab: {fileID: 9177665683896100977, guid: bedb8839b81e03f438eff5ac8d01f698, type: 3}
+  damage:
+    damage: 1
+    knockback: 0.25
+  muzzleSpeed: 30
+  projectileGravity: 0.3
+  fireDelay: 0.125
+  recoilForce: 0.01
+  leanScale: {x: 0.75, y: -0.75}
+  leanSmoothing: 0.75
