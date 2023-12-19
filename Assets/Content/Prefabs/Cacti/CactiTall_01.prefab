@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 737820805236360328}
   - component: {fileID: 3303868979676803138}
   - component: {fileID: 4186138685450702930}
+  - component: {fileID: -2525178296863186160}
   m_Layer: 0
   m_Name: CactiTall_01
   m_TagString: Untagged
@@ -92,9 +93,27 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3952277168876081559}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.15
   m_Height: 1.1734512
   m_Direction: 1
   m_Center: {x: 0, y: 0.5867256, z: 0}
+--- !u!114 &-2525178296863186160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3952277168876081559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c20e0a59f504c2e93e1b285526b2233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  propSwap: {fileID: 7924561580830052495, guid: 073c963c49e565040a193eb786ca836c, type: 3}
+  propMass: 0.02
+  damageKnockbackScale: 0.1
+  collisionKnockbackScale: 2
+  dieOnContact: 1
