@@ -8,6 +8,14 @@ namespace AmmoRacked2.Runtime.Player
     [DisallowMultipleComponent]
     public class PlayerController : GenericController
     {
+        public static readonly Color[] PlayerColors =
+        {
+            new Color(1f, 0.54f, 0.12f),
+            new Color(0.5f, 1f, 0.17f),
+            new Color(0.22f, 0.71f, 1f),
+            new Color(0.68f, 0.17f, 1f),
+        };
+        
         public InputActionAsset inputAsset;
         [TextArea] public string debug;
 
@@ -19,6 +27,7 @@ namespace AmmoRacked2.Runtime.Player
 
         public IReadOnlyList<InputDevice> Devices => inputAsset.devices;
         public bool Disconnected => Devices.Count == 0;
+        public Color Color => PlayerColors[Index];
 
         protected override void Awake()
         {

@@ -8,8 +8,9 @@ namespace AmmoRacked2.Runtime.Player
     {
         public Tank tank;
 
-        [HideInInspector] public int index;
         [HideInInspector] public Camera mainCamera;
+
+        public int Index { get; private set; }
 
         public static event System.Action<GenericController, Tank, DamageArgs, GameObject, Vector3, Vector3> KillEvent;
         public static event System.Action<GenericController, Tank, DamageArgs, GameObject, Vector3, Vector3> DeathEvent;
@@ -52,7 +53,7 @@ namespace AmmoRacked2.Runtime.Player
 
         public virtual void SetIndex(int index)
         {
-            this.index = index;
+            this.Index = index;
         }
 
         public void SpawnTank(Vector3 spawnPoint)

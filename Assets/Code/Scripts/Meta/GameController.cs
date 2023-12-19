@@ -24,10 +24,14 @@ namespace AmmoRacked2.Runtime.Meta
 
         public PlayerController playerPrefab;
         public TankAI aiController;
-        public static List<GenericController> players = new();
+        public List<GenericController> players = new();
+        
+        public static GameController ActiveGameController { get; private set; }
 
         private void OnEnable()
         {
+            ActiveGameController = this;
+            
             joinAction.Enable();
             joinAction.performed += OnJoinPerformed;
 
@@ -58,16 +62,21 @@ namespace AmmoRacked2.Runtime.Meta
 
             GenericController.KillEvent -= OnPlayerKill;
             GenericController.DeathEvent -= OnPlayerDeath;
+
+            if (ActiveGameController == this)
+            {
+                ActiveGameController = null;
+            }
         }
 
         private void OnPlayerKill(GenericController player, Tank tank, DamageArgs args, GameObject invoker, Vector3 point, Vector3 direction)
         {
-            scores[player.index] += gamemode.pointsOnKill;
+            scores[player.Index] += gamemode.pointsOnKill;
         }
 
         private void OnPlayerDeath(GenericController player, Tank tank, DamageArgs args, GameObject invoker, Vector3 point, Vector3 direction)
         {
-            scores[player.index] += gamemode.pointsOnDeath;
+            scores[player.Index] += gamemode.pointsOnDeath;
             
             if (gamemode.respawn)
             {
