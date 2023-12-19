@@ -81,7 +81,8 @@ MonoBehaviour:
   deadTankPrefab: {fileID: 5272512520199695960, guid: 83d23ac6d3d566949820d7d3b0ae0597, type: 3}
   turret: {fileID: 0}
   muzzle: {fileID: 2135254993547393099}
-  coloredRenderers: []
+  coloredRenderers:
+  - {fileID: 8918712531297543592}
 --- !u!114 &3892763089247445254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,5 +160,10 @@ Transform:
 --- !u!4 &2135254993547393099 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -9200030584893701759, guid: f9e7d45b93660ad40a5804a297a14492, type: 3}
+  m_PrefabInstance: {fileID: 2158103795579222474}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &8918712531297543592 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -1858088627272459166, guid: f9e7d45b93660ad40a5804a297a14492, type: 3}
   m_PrefabInstance: {fileID: 2158103795579222474}
   m_PrefabAsset: {fileID: 0}
