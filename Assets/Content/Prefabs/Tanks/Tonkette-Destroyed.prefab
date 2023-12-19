@@ -4869,7 +4869,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -5687,8 +5687,8 @@ ParticleSystem:
     serializedVersion: 4
     rateOverTime:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 10
+      minMaxState: 1
+      scalar: 20
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -5696,21 +5696,21 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
+          inSlope: -1
+          outSlope: -1
+          tangentMode: 34
           weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
+          inWeight: 0
+          outWeight: 0
         - serializedVersion: 3
           time: 1
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
+          value: 0
+          inSlope: -1
+          outSlope: -1
+          tangentMode: 34
           weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
+          inWeight: 0
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
@@ -9653,7 +9653,7 @@ GameObject:
   - component: {fileID: 5272512520199695961}
   - component: {fileID: 5272512520199695963}
   - component: {fileID: 144488937538254939}
-  - component: {fileID: 766487201724168933}
+  - component: {fileID: 1947706649048922532}
   m_Layer: 0
   m_Name: Tonkette-Destroyed
   m_TagString: Untagged
@@ -9676,6 +9676,7 @@ Transform:
   - {fileID: 8770623838201602696}
   - {fileID: 750287976305730881}
   - {fileID: 4677210702061102274}
+  - {fileID: 830091333935315494}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9708,7 +9709,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.3847986, y: 0.41685843, z: 0.7762842}
   m_Center: {x: 0, y: 0.2081736, z: -0.016332686}
---- !u!114 &766487201724168933
+--- !u!114 &1947706649048922532
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9717,10 +9718,48 @@ MonoBehaviour:
   m_GameObject: {fileID: 5272512520199695960}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d109d85af3f44e392bb1df26e0bae5d, type: 3}
+  m_Script: {fileID: 11500000, guid: 64d99286c8804782aef8de9c27621b51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 0
+  initialDelay: 8
+  duration: 5
+  shakeAmplitude: 0.8
+  positionOffset: {x: 0, y: -0.6, z: 0}
+  rotationOffset: {x: 5, y: 0, z: 15}
+--- !u!1001 &4276256925355704791
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5272512520199695961}
+    m_Modifications:
+    - target: {fileID: 3521043806524390384, guid: 092f3ce0382ad85419f22073d8f80e65, type: 3}
+      propertyPath: m_Name
+      value: Large-Explosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 3521043806524390385, guid: 092f3ce0382ad85419f22073d8f80e65, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3521043806524390385, guid: 092f3ce0382ad85419f22073d8f80e65, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3521043806524390385, guid: 092f3ce0382ad85419f22073d8f80e65, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3521043806524390385, guid: 092f3ce0382ad85419f22073d8f80e65, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 092f3ce0382ad85419f22073d8f80e65, type: 3}
+--- !u!4 &830091333935315494 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3521043806524390385, guid: 092f3ce0382ad85419f22073d8f80e65, type: 3}
+  m_PrefabInstance: {fileID: 4276256925355704791}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9096491229690529123
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -7,6 +7,10 @@ CBUFFER_START(UnityPerMaterial)
 TEXTURE2D(_MainTex);
 SAMPLER(sampler_MainTex);
 
+TEXTURE2D(_NormalMap);
+SAMPLER(sampler_NormalMap);
+float _NormalStrength;
+
 float _Scale;
 float4 _HighColor;
 float4 _LowColor;
@@ -19,6 +23,7 @@ struct Attributes
 {
     float4 vertex : POSITION;
     float4 normal : NORMAL;
+    float4 tangent : TANGENT;
     float2 uv : TEXCOORD0;
     float4 color : COLOR;
 };
@@ -29,6 +34,7 @@ struct Varyings
     float4 vertex : SV_POSITION;
     float3 positionWS : POSITION_WS;
     float3 normalWS : NORMAL_WS;
+    float3 tangentWS : TANGENT_WS;
     float3 normalOS : NORMAL_OS;
     float3 triplanar : TRIPLANAR;
     float4 color : COLOR;
@@ -41,6 +47,7 @@ Varyings vert(Attributes input)
     output.uv = input.uv;
     output.positionWS = TransformObjectToWorld(input.vertex.xyz);
     output.normalWS = TransformObjectToWorldNormal(input.normal.xyz);
+    output.tangentWS = TransformObjectToWorldNormal(input.tangent.xyz);
     output.normalOS = input.normal;
 
     float3 worldScale = float3
@@ -74,12 +81,32 @@ float4 Triplanar(TEXTURE2D_PARAM(_tex, sampler_tex), Varyings input)
         z * weights.z;
 }
 
+float3 TriplanarNormal(TEXTURE2D_PARAM(_tex, sampler_tex), Varyings input)
+{
+    float3 x = UnpackNormalScale(SAMPLE_TEXTURE2D(_tex, sampler_tex, input.triplanar.zy), _NormalStrength);
+    float3 y = UnpackNormalScale(SAMPLE_TEXTURE2D(_tex, sampler_tex, input.triplanar.xz), _NormalStrength);
+    float3 z = UnpackNormalScale(SAMPLE_TEXTURE2D(_tex, sampler_tex, input.triplanar.xy), _NormalStrength);
+
+    x = float3(x.xy + input.normalWS.zy, abs(x.z) * input.normalWS.x);
+    y = float3(y.xy + input.normalWS.xz, abs(y.z) * input.normalWS.y);
+    z = float3(z.xy + input.normalWS.xy, abs(z.z) * input.normalWS.z);
+
+    float3 weights = pow(abs(input.normalOS.xyz), 2.0);
+
+    return normalize
+    (
+        x.zyx * weights.x +
+        y.xzy * weights.y +
+        z.xyz * weights.z
+    );
+}
+
 float Lighting(Varyings input)
 {
     float lighting = 0.0f;
 
     float4 shadowCoords = TransformWorldToShadowCoord(input.positionWS);
-    
+
     Light mainLight = GetMainLight(shadowCoords);
     lighting += Lighting(input, mainLight);
 
@@ -96,13 +123,16 @@ float Lighting(Varyings input)
 half4 frag(Varyings input) : SV_Target
 {
     input.normalWS = normalize(input.normalWS);
+    input.tangentWS = normalize(input.tangentWS);
     input.normalOS = normalize(input.normalOS);
+
+    input.normalWS = TriplanarNormal(_NormalMap, sampler_NormalMap, input);
     float attenuation = Lighting(input);
 
     half4 col = normalize(lerp(_LowColor, _HighColor, input.uv.y)) * lerp(length(_LowColor), length(_HighColor), input.uv.y);
     col *= input.color;
     col *= Triplanar(_MainTex, sampler_MainTex, input);
-    col.rgb *= saturate(attenuation + _Ambient);
+    col.rgb *= lerp(0.5, 1.0, attenuation);
 
     return col;
 }
