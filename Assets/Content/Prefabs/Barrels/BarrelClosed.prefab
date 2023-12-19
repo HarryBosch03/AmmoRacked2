@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2409437110078785397}
   - component: {fileID: 474282040526844863}
   - component: {fileID: 7360106288414458613}
+  - component: {fileID: 624853279}
   m_Layer: 0
   m_Name: BarrelClosed
   m_TagString: Untagged
@@ -99,3 +100,21 @@ CapsuleCollider:
   m_Height: 0.021784939
   m_Direction: 1
   m_Center: {x: 0.0000000037252903, y: 0.010892469, z: 0}
+--- !u!114 &624853279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131330108267205226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c20e0a59f504c2e93e1b285526b2233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  propSwap: {fileID: 3521043806524390384, guid: 092f3ce0382ad85419f22073d8f80e65, type: 3}
+  propMass: 0.02
+  damageKnockbackScale: 0.1
+  collisionKnockbackScale: 2
+  dieOnContact: 0
