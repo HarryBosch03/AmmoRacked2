@@ -9,10 +9,10 @@ namespace AmmoRacked2.Runtime.Utility
     public class Prop : MonoBehaviour, IDamageable
     {
         public int health;
-        public bool destroyed;
         public GameObject propSwap;
-        
-        public SinkWithDelay sink;
+
+        private bool destroyed;
+        private SinkWithDelay sink;
 
         private void Awake()
         {
@@ -34,6 +34,7 @@ namespace AmmoRacked2.Runtime.Utility
                     Destroy(gameObject);
                 }
                 else if (sink) sink.enabled = true;
+                else Destroy(gameObject);
                 destroyed = true;
             }
         }
