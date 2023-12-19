@@ -31,6 +31,8 @@ namespace AmmoRacked2.Runtime.Player
         public static event Action<PlayerController, Tank, DamageArgs, GameObject, Vector3, Vector3> DeathEvent;
         public static event Action<PlayerController, Tank> TankSpawnEvent;
 
+
+
         private void Awake()
         {
             tank = Instantiate(tank);

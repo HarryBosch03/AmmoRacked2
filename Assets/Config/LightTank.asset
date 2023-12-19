@@ -28,7 +28,7 @@ MonoBehaviour:
     knockback: 0.25
   muzzleSpeed: 40
   projectileGravity: 4
-  fireDelay: 0.125
+  fireDelay: 0.25
   recoilForce: 0.01
   leanScale: {x: 0.75, y: -0.75}
   leanSmoothing: 0.75

@@ -27079,7 +27079,7 @@ GameObject:
   - component: {fileID: 1487908708}
   - component: {fileID: 1487908709}
   m_Layer: 0
-  m_Name: bulletAudio
+  m_Name: smallBulletAudio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27112,7 +27112,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 720bb7ff155654b4ca6ad55d2c3858d3, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0

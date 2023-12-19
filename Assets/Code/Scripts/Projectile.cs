@@ -16,6 +16,10 @@ namespace AmmoRacked2.Runtime
         private Transform hitFX;
         private Transform detach;
 
+        /*public AudioSource projectileAudio;
+        public AudioClip missAudio;
+        public AudioClip hitAudio;*/
+
         public Projectile Spawn(GameObject owner, Vector3 position, Vector3 velocity, DamageArgs damage, float gravityScale)
         {
             var instance = Instantiate(this, position, Quaternion.LookRotation(velocity, Vector3.up));
@@ -32,6 +36,8 @@ namespace AmmoRacked2.Runtime
             hitFX = transform.Find("HitFX");
             if (hitFX) hitFX.gameObject.SetActive(false);
             detach = transform.Find("Detach");
+            /*GameObject prefabedInstance = GameObject.Find("smallBulletAudio");
+            projectileAudio = prefabedInstance.GetComponent<AudioSource>();*/
         }
 
         private void FixedUpdate()
@@ -56,9 +62,12 @@ namespace AmmoRacked2.Runtime
                 if (damageable != null)
                 {
                     damageable.Damage(damage, owner, hit.point, velocity.normalized);
-
+                    //projectileAudio.PlayOneShot(hitAudio);
                 }
-
+                /*else
+                {
+                    projectileAudio.PlayOneShot(missAudio);
+                }*/
                 Destroy(hit.point, Vector3.Reflect(velocity, hit.normal));
             }
         }
