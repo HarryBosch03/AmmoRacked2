@@ -13,21 +13,21 @@ MonoBehaviour:
   m_Name: HeavyTank
   m_EditorClassIdentifier: 
   moveSpeed: 2.5
-  moveAccelerationTime: 1
-  turnSpeedDegrees: 75
+  moveAccelerationTime: 1.5
+  turnSpeedDegrees: 85
   turnAccelerationTime: 1
   tangentialFriction: 1
-  maxHealth: 30
+  maxHealth: 50
   lockTurret: 0
   turretTurnSpeed: 100
   turretTurnAcceleration: 0.1
   projectilePrefab: {fileID: 9177665683896100977, guid: bbb9ecfb52d73d141a93df067237de4f, type: 3}
   damage:
-    damage: 10
+    damage: 15
     knockback: 10
   muzzleSpeed: 100
-  projectileGravity: 0.3
+  projectileGravity: 2
   fireDelay: 2
-  recoilForce: 4
+  recoilForce: 5
   leanScale: {x: 0.5, y: -0.5}
   leanSmoothing: 1

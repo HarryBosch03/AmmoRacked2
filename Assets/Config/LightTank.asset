@@ -17,7 +17,7 @@ MonoBehaviour:
   turnSpeedDegrees: 200
   turnAccelerationTime: 0.5
   tangentialFriction: 0.081
-  maxHealth: 10
+  maxHealth: 15
   lockTurret: 0
   turretTurnSpeed: 500
   turretTurnAcceleration: 0.2
@@ -25,8 +25,8 @@ MonoBehaviour:
   damage:
     damage: 1
     knockback: 0.25
-  muzzleSpeed: 30
-  projectileGravity: 0.3
+  muzzleSpeed: 40
+  projectileGravity: 4
   fireDelay: 0.125
   recoilForce: 0.01
   leanScale: {x: 0.75, y: -0.75}
