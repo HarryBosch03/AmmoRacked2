@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MAT_ArmyShelter
+  m_Name: MAT_PlaneBase
   m_Shader: {fileID: 4800000, guid: 8b14d1cd4ccc4e35aedbe7e92629825c, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -108,14 +108,14 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.7353569, g: 0.7353569, b: 0.7353569, a: 1}
-    - _Color: {r: 0.7353569, g: 0.7353569, b: 0.7353569, a: 1}
+    - _BaseColor: {r: 0.67469937, g: 0.802398, b: 0.8090613, a: 1}
+    - _Color: {r: 0.6746993, g: 0.802398, b: 0.8090613, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _HighColor: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
-    - _LowColor: {r: 0.49056602, g: 0.41178972, b: 0.28924882, a: 1}
+    - _HighColor: {r: 0.41451588, g: 0.6703464, b: 0.764151, a: 1}
+    - _LowColor: {r: 0.6132076, g: 0.36911526, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &2042335315477593357
+--- !u!114 &4440558996257289799
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
