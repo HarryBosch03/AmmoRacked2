@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9082391475050859179}
   - component: {fileID: 2508234546364466592}
   - component: {fileID: 6449192545917410196}
+  - component: {fileID: 2195532484464239040}
   m_Layer: 0
   m_Name: ShortCacti_01.005
   m_TagString: Untagged
@@ -98,6 +99,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5128941836324690398, guid: f9fc0cdae66b323448a424ffb7098bf1, type: 3}
+--- !u!54 &2195532484464239040
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69553194219164012}
+  serializedVersion: 2
+  m_Mass: 0.05
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1316304318332734547
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,6 +127,7 @@ GameObject:
   - component: {fileID: 1788426188608134488}
   - component: {fileID: 8009136507395095439}
   - component: {fileID: 6449192547701707466}
+  - component: {fileID: 8398979868140336541}
   m_Layer: 0
   m_Name: ShortCacti_01.001
   m_TagString: Untagged
@@ -196,6 +214,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -4442506541007324715, guid: f9fc0cdae66b323448a424ffb7098bf1, type: 3}
+--- !u!54 &8398979868140336541
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316304318332734547}
+  serializedVersion: 2
+  m_Mass: 0.05
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &3681123324500046716
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,6 +242,7 @@ GameObject:
   - component: {fileID: 6112799247667254367}
   - component: {fileID: 6237641007462108506}
   - component: {fileID: 6449192546547979776}
+  - component: {fileID: 8759709418190453372}
   m_Layer: 0
   m_Name: ShortCacti_01.003
   m_TagString: Untagged
@@ -294,6 +329,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -3397490482066728089, guid: f9fc0cdae66b323448a424ffb7098bf1, type: 3}
+--- !u!54 &8759709418190453372
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3681123324500046716}
+  serializedVersion: 2
+  m_Mass: 0.05
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5364869272775906390
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,6 +357,7 @@ GameObject:
   - component: {fileID: 5817018791633016512}
   - component: {fileID: 2315191984358243760}
   - component: {fileID: 6449192547094628627}
+  - component: {fileID: 1485711655157357276}
   m_Layer: 0
   m_Name: ShortCacti_01.002
   m_TagString: Untagged
@@ -392,6 +444,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 1761031879640708283, guid: f9fc0cdae66b323448a424ffb7098bf1, type: 3}
+--- !u!54 &1485711655157357276
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5364869272775906390}
+  serializedVersion: 2
+  m_Mass: 0.05
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5454253091959100019
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,6 +472,7 @@ GameObject:
   - component: {fileID: 3110026323434975607}
   - component: {fileID: 1018377958265093193}
   - component: {fileID: 6449192546218304817}
+  - component: {fileID: 7524701402661040869}
   m_Layer: 0
   m_Name: ShortCacti_01.004
   m_TagString: Untagged
@@ -490,6 +559,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -3805607003239815149, guid: f9fc0cdae66b323448a424ffb7098bf1, type: 3}
+--- !u!54 &7524701402661040869
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5454253091959100019}
+  serializedVersion: 2
+  m_Mass: 0.05
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6143274527942317573
 GameObject:
   m_ObjectHideFlags: 0
