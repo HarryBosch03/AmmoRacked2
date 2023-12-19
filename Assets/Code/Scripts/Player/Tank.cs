@@ -1,7 +1,5 @@
-﻿using System;
-using AmmoRacked2.Runtime.Health;
+﻿using AmmoRacked2.Runtime.Health;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace AmmoRacked2.Runtime.Player
 {
@@ -13,6 +11,7 @@ namespace AmmoRacked2.Runtime.Player
         public GameObject deadTankPrefab;
         public Transform turret;
         public Transform muzzle;
+        public GameObject hitFX;
 
         [Space]
         public Renderer[] coloredRenderers = new Renderer[0];
@@ -124,6 +123,8 @@ namespace AmmoRacked2.Runtime.Player
             
             currentHealth -= args.damage;
             Body.AddForce(direction.normalized * args.knockback, ForceMode.Impulse);
+
+            Instantiate(hitFX, point, Quaternion.LookRotation(-direction));
 
             if (currentHealth <= 0)
             {

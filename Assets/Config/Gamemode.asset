@@ -19,7 +19,7 @@ MonoBehaviour:
   pointsOnKill: 1
   pointsOnDeath: -1
   keepTime: 1
-  timeLimitSeconds: 120
+  timeLimitSeconds: 2
   playerColors:
   - {r: 1, g: 0.018518519, b: 0, a: 1}
   - {r: 0.61960787, g: 0.46666667, b: 1, a: 1}

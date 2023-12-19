@@ -106,7 +106,7 @@ namespace AmmoRacked2.Runtime.UI
                 Show();
 
                 var score = gameController.GetScore(index);
-                text.text = string.Format(TextTemplate, score, index);
+                text.text = string.Format(TextTemplate, score, index + 1);
                 colorBand.color = gameController.players[index].Color;
             }
 

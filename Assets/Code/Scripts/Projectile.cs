@@ -58,6 +58,10 @@ namespace AmmoRacked2.Runtime
                 {
                     damageable.Damage(damage, owner, hit.point, velocity.normalized);
                 }
+                else if (hit.rigidbody)
+                {
+                    hit.rigidbody.AddForce(velocity.normalized * damage.knockback, ForceMode.VelocityChange);
+                }
                 
                 Destroy(hit.point, Vector3.Reflect(velocity, hit.normal));
             }

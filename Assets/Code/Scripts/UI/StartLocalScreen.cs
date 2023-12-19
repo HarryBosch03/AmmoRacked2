@@ -26,7 +26,6 @@ namespace AmmoRacked2.Runtime.UI
             base.Awake();
 
             text = transform.Find<TMP_Text>("Text");
-            text.text = JoinText;
             
             var prefab = transform.Find("Players/P1");
             players = new PlayerManager[4];
@@ -40,9 +39,19 @@ namespace AmmoRacked2.Runtime.UI
 
         protected override void OnEnable()
         {
+            Debug.Log("test");
+            
             base.OnEnable();
             joinAction.Enable();
             joinAction.performed += OnJoin;
+
+            for (var i = 0; i < 4; i++)
+            {
+                GameController.JoinedDevices[i] = null;
+                players[i].Reset();
+            }
+            
+            text.text = JoinText;
         }
 
         protected override void OnDisable()
@@ -121,6 +130,7 @@ namespace AmmoRacked2.Runtime.UI
             public Transform root;
             public bool occupied;
             public TMP_Text text;
+            public Image[] borders;
 
             public bool Ready { get; private set; }
 
@@ -130,17 +140,25 @@ namespace AmmoRacked2.Runtime.UI
                 this.index = index;
                 this.root = root;
 
-                var borders = new Image[2];
+                borders = new Image[2];
                 borders[0] = root.Find<Image>("Border0");
                 borders[1] = root.Find<Image>("Border1");
+                
+                text = root.Find<TMP_Text>("Text");
 
+                Reset();
+            }
+            
+            public void Reset()
+            {
+                occupied = false;
+                Ready = false;
+                
                 borders[0].color = screen.gamemode.playerColors[index];
                 borders[1].color = borders[0].color;
 
-                text = root.Find<TMP_Text>("Text");
-                UpdateText();
-                
                 root.gameObject.SetActive(false);
+                UpdateText();
             }
 
             private void UpdateText()

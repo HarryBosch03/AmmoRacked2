@@ -27,6 +27,7 @@ namespace AmmoRacked2.Runtime.Meta
         public static readonly InputDevice[] JoinedDevices = new InputDevice[4];
         public static GameController ActiveGameController { get; private set; }
         public static event Action<int, int, int> PlayerScoreChangeEvent;
+        public static event Action GameEndEvent;
 
         public int GetScore(int playerIndex) => scores[playerIndex];
 
@@ -55,6 +56,24 @@ namespace AmmoRacked2.Runtime.Meta
             
             ActiveGameController = this;
 
+            var playerCount = 0;
+            foreach (var device in JoinedDevices)
+            {
+                if (device != null) playerCount++;
+            }
+
+            if (playerCount == 0)
+            {
+                var head = 0;
+                if (Keyboard.current != null) JoinedDevices[head++] = Keyboard.current;
+
+                foreach (var gamepad in Gamepad.all)
+                {
+                    JoinedDevices[head++] = gamepad;
+                }
+                playerCount = head;
+            }
+            
             foreach (var device in JoinedDevices)
             {
                 if (device == null) continue;
@@ -83,6 +102,11 @@ namespace AmmoRacked2.Runtime.Meta
             {
                 ActiveGameController = null;
             }
+
+            for (var i = 0; i < JoinedDevices.Length; i++)
+            {
+                JoinedDevices[i] = null;
+            }
         }
 
         private void Update()
@@ -90,7 +114,8 @@ namespace AmmoRacked2.Runtime.Meta
             GameTime += Time.deltaTime;
             if (GameTime > gamemode.timeLimitSeconds && gamemode.keepTime)
             {
-                // TODO: Finish the Game
+                Time.timeScale = 0.0f;
+                GameEndEvent?.Invoke();
             }
         }
 

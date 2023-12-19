@@ -20455,6 +20455,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameSceneGeneral
       objectReference: {fileID: 0}
+    - target: {fileID: 7706412775054233727, guid: a25f181369c96894fb30b178aa8e9adb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706412775054233727, guid: a25f181369c96894fb30b178aa8e9adb, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706412775054233727, guid: a25f181369c96894fb30b178aa8e9adb, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706412775054233727, guid: a25f181369c96894fb30b178aa8e9adb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706412775054233727, guid: a25f181369c96894fb30b178aa8e9adb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a25f181369c96894fb30b178aa8e9adb, type: 3}
 --- !u!4 &1652838593 stripped

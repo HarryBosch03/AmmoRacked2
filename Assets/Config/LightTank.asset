@@ -23,7 +23,7 @@ MonoBehaviour:
   turretTurnAcceleration: 0.2
   projectilePrefab: {fileID: 9177665683896100977, guid: bedb8839b81e03f438eff5ac8d01f698, type: 3}
   damage:
-    damage: 1
+    damage: 10
     knockback: 0.25
   muzzleSpeed: 30
   projectileGravity: 0.3
