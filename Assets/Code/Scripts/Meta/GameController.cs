@@ -12,7 +12,6 @@ namespace AmmoRacked2.Runtime.Meta
     public class GameController : MonoBehaviour
     {
         public Gamemode gamemode;
-        public InputAction joinAction;
         public Vector2 spawnMin;
         public Vector2 spawnMax;
         public bool spawnAll;
@@ -24,7 +23,8 @@ namespace AmmoRacked2.Runtime.Meta
         
         public float GameTime { get; private set; }
         public float GameTimeLeft => gamemode.keepTime ? gamemode.timeLimitSeconds - GameTime : 0.0f;
-        
+
+        public static readonly InputDevice[] JoinedDevices = new InputDevice[4];
         public static GameController ActiveGameController { get; private set; }
         public static event Action<int, int, int> PlayerScoreChangeEvent;
 
@@ -47,11 +47,20 @@ namespace AmmoRacked2.Runtime.Meta
 
         private void OnEnable()
         {
-            ActiveGameController = this;
+            if (ActiveGameController)
+            {
+                Destroy(this);
+                return;
+            }
             
-            joinAction.Enable();
-            joinAction.performed += OnJoinPerformed;
+            ActiveGameController = this;
 
+            foreach (var device in JoinedDevices)
+            {
+                if (device == null) continue;
+                JoinWithDevice(device);
+            }
+            
             PlayerController.KillEvent += OnPlayerKill;
             PlayerController.DeathEvent += OnPlayerDeath;
             
@@ -60,9 +69,6 @@ namespace AmmoRacked2.Runtime.Meta
         
         private void OnDisable()
         {
-            joinAction.performed -= OnJoinPerformed;
-            joinAction.Disable();
-
             foreach (var player in players)
             {
                 if (player) Destroy(player.gameObject);
@@ -108,9 +114,8 @@ namespace AmmoRacked2.Runtime.Meta
             player.SpawnTank(GetSpawnPoint());
         }
 
-        private void OnJoinPerformed(InputAction.CallbackContext ctx)
+        private void JoinWithDevice(InputDevice device)
         {
-            var device = ctx.control.device;
             if (device is not Keyboard && device is not Mouse && device is not Gamepad) return;
 
             foreach (var controller in players)

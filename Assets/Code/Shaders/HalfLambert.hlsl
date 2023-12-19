@@ -1,6 +1,8 @@
 ﻿#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/core.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 
+static const float4 _LightColor = 1.0f;
+static const float4 _AmbientColor = 0.5f;
 
 CBUFFER_START(UnityPerMaterial)
 
@@ -16,8 +18,6 @@ float4 _HighColor;
 float4 _LowColor;
 
 CBUFFER_END
-
-static const float _Ambient = 0.5f;
 
 struct Attributes
 {
@@ -101,7 +101,7 @@ float3 TriplanarNormal(TEXTURE2D_PARAM(_tex, sampler_tex), Varyings input)
     );
 }
 
-float Lighting(Varyings input)
+float4 Lighting(Varyings input)
 {
     float lighting = 0.0f;
 
@@ -117,7 +117,7 @@ float Lighting(Varyings input)
         lighting += Lighting(input, light);
     }
 
-    return lighting;
+    return lerp(_AmbientColor, _LightColor, lighting);
 }
 
 half4 frag(Varyings input) : SV_Target
@@ -127,12 +127,12 @@ half4 frag(Varyings input) : SV_Target
     input.normalOS = normalize(input.normalOS);
 
     input.normalWS = TriplanarNormal(_NormalMap, sampler_NormalMap, input);
-    float attenuation = Lighting(input);
+    float4 lighting = Lighting(input);
 
     half4 col = normalize(lerp(_LowColor, _HighColor, input.uv.y)) * lerp(length(_LowColor), length(_HighColor), input.uv.y);
     col *= input.color;
     col *= Triplanar(_MainTex, sampler_MainTex, input);
-    col.rgb *= lerp(0.5, 1.0, attenuation);
+    col.rgb *= lighting;
 
     return col;
 }
