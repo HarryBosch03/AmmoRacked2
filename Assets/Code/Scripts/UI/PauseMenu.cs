@@ -1,8 +1,8 @@
-using System;
 using AmmoRacked2.Runtime.Player;
 using AmmoRacked2.Runtime.Utility;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace AmmoRacked2.Runtime.UI
@@ -28,11 +28,7 @@ namespace AmmoRacked2.Runtime.UI
 
         private void Quit()
         {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
+            SceneManager.LoadScene(0);
         }
 
         private void OnEnable()

@@ -1,6 +1,7 @@
 ﻿
 using System.Collections;
 using AmmoRacked2.Runtime.Meta;
+using AmmoRacked2.Runtime.Player;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,6 +15,7 @@ namespace AmmoRacked2.Runtime.UI
     {
         public InputAction joinAction;
         public InputAction changeTankAction;
+        public InputAction changeHatAction;
         public Gamemode gamemode;
         public Texture[] tankPortraits;
         
@@ -47,6 +49,9 @@ namespace AmmoRacked2.Runtime.UI
 
             changeTankAction.Enable();
             changeTankAction.performed += OnChangeTankPerformed;
+            
+            changeHatAction.Enable();
+            changeHatAction.performed += OnChangeHatPerformed;
 
             for (var i = 0; i < 4; i++)
             {
@@ -65,6 +70,9 @@ namespace AmmoRacked2.Runtime.UI
             
             changeTankAction.Disable();
             changeTankAction.performed -= OnChangeTankPerformed;
+            
+            changeHatAction.Disable();
+            changeHatAction.performed -= OnChangeHatPerformed;
         }
 
         private void OnChangeTankPerformed(InputAction.CallbackContext ctx)
@@ -77,6 +85,23 @@ namespace AmmoRacked2.Runtime.UI
 
                 players[i].ChangeTankSelection(Mathf.RoundToInt(ctx.ReadValue<float>()));
                 
+                break;
+            }
+        }
+        
+        private void OnChangeHatPerformed(InputAction.CallbackContext ctx)
+        {
+            var device = ctx.control.device;
+            for (var i = 0; i < GameController.JoinedDevices.Length; i++)
+            {
+                var other = GameController.JoinedDevices[i];
+                if (device != other) continue;
+
+                const int hatCount = 6;
+                var index = PlayerController.HatSelection[i] + Mathf.RoundToInt(ctx.ReadValue<float>());
+                index = (index % hatCount + hatCount) % hatCount;
+                PlayerController.HatSelection[i] = index;
+
                 break;
             }
         }
@@ -192,8 +217,8 @@ namespace AmmoRacked2.Runtime.UI
 
             public void ChangeTankSelection(int delta)
             {
+                const int c = 3;
                 var tankIndex = GameController.TankSelection[index] + delta;
-                var c = screen.tankPortraits.Length;
                 tankIndex = (tankIndex % c + c) % c;
                 GameController.TankSelection[index] = tankIndex;
 

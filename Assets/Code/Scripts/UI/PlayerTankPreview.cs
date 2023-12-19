@@ -16,7 +16,7 @@ namespace AmmoRacked2.Runtime.UI
         private void Update()
         {
             var tankIndex = GameController.TankSelection[index];
-            var hatIndex = PlayerController.HatSelection[index];
+            var hatIndex = PlayerController.HatSelection[index] - 1;
 
             for (var i = 0; i < transform.childCount; i++)
             {
@@ -24,10 +24,10 @@ namespace AmmoRacked2.Runtime.UI
             }
 
             var tank = transform.GetChild(tankIndex);
-            var hatParent = tank.Find("Hat");
+            var hatParent = tank.Find("Hats");
             for (var i = 0; i < hatParent.childCount; i++)
             {
-                hatParent.GetChild(i).gameObject.SetActive(i == hatIndex - 1);
+                hatParent.GetChild(i).gameObject.SetActive(i == hatIndex);
             }
         }
     }

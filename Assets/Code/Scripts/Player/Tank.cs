@@ -55,7 +55,7 @@ namespace AmmoRacked2.Runtime.Player
 
         public void SetHat(int hatIndex)
         {
-            var hatParent = transform.Find("Hat");
+            var hatParent = transform.Find("Hats");
             for (var i = 0; i < hatParent.childCount; i++)
             {
                 var hat = hatParent.GetChild(i);
@@ -135,7 +135,7 @@ namespace AmmoRacked2.Runtime.Player
             currentHealth -= args.damage;
             Body.AddForce(direction.normalized * args.knockback, ForceMode.Impulse);
 
-            Instantiate(hitFX, point, Quaternion.LookRotation(-direction));
+            if (hitFX) Instantiate(hitFX, point, Quaternion.LookRotation(-direction));
 
             if (currentHealth <= 0)
             {
