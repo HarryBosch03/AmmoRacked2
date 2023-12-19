@@ -17,12 +17,16 @@ MonoBehaviour:
   turnSpeedDegrees: 240
   turnAccelerationTime: 0.3
   tangentialFriction: 0.115
-  maxHealth: 3
+  maxHealth: 1
+  turretTurnSpeed: 0
+  turretTurnAcceleration: 0
   projectilePrefab: {fileID: 9177665683896100977, guid: bbb9ecfb52d73d141a93df067237de4f, type: 3}
   damage:
     damage: 1
     knockback: 40
   muzzleSpeed: 80
+  projectileGravity: 0.3
   fireDelay: 1
+  recoilForce: 0
   leanScale: {x: 1, y: -0.5}
   leanSmoothing: 0.9
