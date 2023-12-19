@@ -5,6 +5,7 @@ using AmmoRacked2.Runtime.Meta;
 using AmmoRacked2.Runtime.Player;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace AmmoRacked2.Runtime.UI
@@ -35,11 +36,20 @@ namespace AmmoRacked2.Runtime.UI
 
             root.gameObject.SetActive(false);
             GameController.GameEndEvent += OnGameEnd;
+
+            var button = root.Find<Button>("Button");
+            button.onClick.AddListener(ReturnToMenu);
+        }
+
+        private void ReturnToMenu()
+        {
+            SceneManager.LoadScene(0);
         }
 
         private void OnDisable()
         {
             GameController.GameEndEvent -= OnGameEnd;
+            Time.timeScale = 1.0f;
         }
 
         private void OnGameEnd()

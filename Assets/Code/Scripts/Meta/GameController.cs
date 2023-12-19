@@ -16,12 +16,14 @@ namespace AmmoRacked2.Runtime.Meta
         public Vector2 spawnMax;
         public bool spawnAll;
         public bool spawnImmediately;
+        public Tank[] tanks;
         [SerializeField] private List<int> scores = new();
 
         public PlayerController playerPrefab;
         public List<PlayerController> players = new();
         
         public float GameTime { get; private set; }
+        public static readonly int[] TankSelection = new int[4];
         public float GameTimeLeft => gamemode.keepTime ? gamemode.timeLimitSeconds - GameTime : 0.0f;
 
         public static readonly InputDevice[] JoinedDevices = new InputDevice[4];
@@ -71,15 +73,13 @@ namespace AmmoRacked2.Runtime.Meta
                 {
                     JoinedDevices[head++] = gamepad;
                 }
-                playerCount = head;
             }
-            
-            foreach (var device in JoinedDevices)
+
+            for (var i = 0; i < JoinedDevices.Length; i++)
             {
-                if (device == null) continue;
-                JoinWithDevice(device);
+                JoinWithDevice(i);
             }
-            
+
             PlayerController.KillEvent += OnPlayerKill;
             PlayerController.DeathEvent += OnPlayerDeath;
             
@@ -139,8 +139,9 @@ namespace AmmoRacked2.Runtime.Meta
             player.SpawnTank(GetSpawnPoint());
         }
 
-        private void JoinWithDevice(InputDevice device)
+        private void JoinWithDevice(int deviceIndex)
         {
+            var device = JoinedDevices[deviceIndex];
             if (device is not Keyboard && device is not Mouse && device is not Gamepad) return;
 
             foreach (var controller in players)
@@ -162,6 +163,7 @@ namespace AmmoRacked2.Runtime.Meta
                 }
             }
             
+            playerPrefab.tank = tanks[TankSelection[deviceIndex]];
             AddController(playerPrefab.SpawnPlayer(device));
         }
 

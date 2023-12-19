@@ -96,6 +96,8 @@ namespace AmmoRacked2.Runtime.Player
 
         private void DoTurretInput()
         {
+            if (!tank.turret) return;
+            
             Vector2 screenPos;
             if (useMouse)
             {

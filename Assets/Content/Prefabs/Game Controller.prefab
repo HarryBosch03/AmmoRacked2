@@ -46,39 +46,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gamemode: {fileID: 11400000, guid: c2bcf414fe6d77f4aba0fbaced62e35a, type: 2}
-  joinAction:
-    m_Name: Join
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 00677cc7-3e4c-4b1e-8221-1a7f60d26224
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 920a0144-8a55-4d17-9d69-afe654aae57e
-      m_Path: <Keyboard>/space
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Join
-      m_Flags: 0
-    - m_Name: 
-      m_Id: f85d9406-a617-472f-8da7-90713101f972
-      m_Path: <Gamepad>/buttonSouth
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Join
-      m_Flags: 0
-    m_Flags: 0
   spawnMin: {x: -10, y: -10}
   spawnMax: {x: 10, y: 10}
   spawnAll: 0
   spawnImmediately: 1
-  aiCount: 0
+  tanks:
+  - {fileID: 3775916639494043030, guid: faa97237314117c43b7b0232a2a6f272, type: 3}
+  - {fileID: 3775916639494043030, guid: 93f3d1b9110f8bb41b42eefe92842238, type: 3}
+  - {fileID: 3775916639494043030, guid: b37bdfb1e9b776649a0dc8702b295fc1, type: 3}
   scores: 
   playerPrefab: {fileID: -3619415225865938314, guid: 8c05aeff0ac0c084cb7fd30bcadb1d4b, type: 3}
-  aiController: {fileID: 8115114681043133758, guid: 8dfa6673d12b70a4fb642f483bc7e6bd, type: 3}
+  players: []
 --- !u!114 &7981746532585796888
 MonoBehaviour:
   m_ObjectHideFlags: 0

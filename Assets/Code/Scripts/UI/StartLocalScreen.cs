@@ -13,7 +13,9 @@ namespace AmmoRacked2.Runtime.UI
     public class StartLocalScreen : MenuScreen
     {
         public InputAction joinAction;
+        public InputAction changeTankAction;
         public Gamemode gamemode;
+        public Texture[] tankPortraits;
         
         private TMP_Text text;
         private PlayerManager[] players;
@@ -39,11 +41,12 @@ namespace AmmoRacked2.Runtime.UI
 
         protected override void OnEnable()
         {
-            Debug.Log("test");
-            
             base.OnEnable();
             joinAction.Enable();
             joinAction.performed += OnJoin;
+
+            changeTankAction.Enable();
+            changeTankAction.performed += OnChangeTankPerformed;
 
             for (var i = 0; i < 4; i++)
             {
@@ -59,6 +62,23 @@ namespace AmmoRacked2.Runtime.UI
             base.OnDisable();
             joinAction.Disable();
             joinAction.performed -= OnJoin;
+            
+            changeTankAction.Disable();
+            changeTankAction.performed -= OnChangeTankPerformed;
+        }
+
+        private void OnChangeTankPerformed(InputAction.CallbackContext ctx)
+        {
+            var device = ctx.control.device;
+            for (var i = 0; i < GameController.JoinedDevices.Length; i++)
+            {
+                var other = GameController.JoinedDevices[i];
+                if (device != other) continue;
+
+                players[i].ChangeTankSelection(Mathf.RoundToInt(ctx.ReadValue<float>()));
+                
+                break;
+            }
         }
 
         private void OnJoin(InputAction.CallbackContext ctx)
@@ -128,6 +148,7 @@ namespace AmmoRacked2.Runtime.UI
             public int index;
             public StartLocalScreen screen;
             public Transform root;
+            public RawImage portrait;
             public bool occupied;
             public TMP_Text text;
             public Image[] borders;
@@ -139,6 +160,8 @@ namespace AmmoRacked2.Runtime.UI
                 this.screen = screen;
                 this.index = index;
                 this.root = root;
+
+                portrait = root.Find<RawImage>("TankSelect");
 
                 borders = new Image[2];
                 borders[0] = root.Find<Image>("Border0");
@@ -158,18 +181,29 @@ namespace AmmoRacked2.Runtime.UI
                 borders[1].color = borders[0].color;
 
                 root.gameObject.SetActive(false);
-                UpdateText();
+                Update();
             }
 
-            private void UpdateText()
+            private void Update()
             {
                 text.text = $"Player {index + 1}\n<size=50%>{(Ready ? "Ready" : "Not Ready")}";
+                portrait.texture = screen.tankPortraits[GameController.TankSelection[index]];
+            }
+
+            public void ChangeTankSelection(int delta)
+            {
+                var tankIndex = GameController.TankSelection[index] + delta;
+                var c = screen.tankPortraits.Length;
+                tankIndex = (tankIndex % c + c) % c;
+                GameController.TankSelection[index] = tankIndex;
+
+                Update();
             }
 
             public void SetReady(bool ready)
             {
                 Ready = ready;
-                UpdateText();
+                Update();
             }
             
             public void Join(InputDevice device)
@@ -178,7 +212,7 @@ namespace AmmoRacked2.Runtime.UI
                 GameController.JoinedDevices[index] = device;
                 occupied = true;
                 Ready = false;
-                UpdateText();
+                Update();
             }
         }
     }

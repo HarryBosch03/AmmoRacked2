@@ -17,7 +17,7 @@ namespace AmmoRacked2.Runtime.Player
 
         private void Update()
         {
-            if (Config.lockTurret)
+            if (Config.lockTurret || !tank.turret)
             {
                 currentRotation = 0.0f;
                 return;
@@ -41,8 +41,7 @@ namespace AmmoRacked2.Runtime.Player
         private void LateUpdate()
         {
             var turret = tank.turret;
-
-            turret.localRotation = Quaternion.Euler(0.0f, 0.0f, currentRotation);
+            if (turret) turret.localRotation = Quaternion.Euler(0.0f, 0.0f, currentRotation);
         }
     }
 }
