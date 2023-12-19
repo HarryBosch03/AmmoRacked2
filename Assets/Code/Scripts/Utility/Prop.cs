@@ -60,13 +60,27 @@ namespace AmmoRacked2.Runtime.Utility
         private void OnCollisionEnter(Collision collision)
         {
             if (!dieOnContact) return;
+
+            DieWithContact(collision.rigidbody, collision.relativeVelocity);
+        }
+
+        private void DieWithContact(Rigidbody damager, Vector3 force)
+        {
+            if (!damager) return;
             
             var damageArgs = new DamageArgs
             {
                 damage = health,
-                knockback = collision.relativeVelocity.magnitude * collisionKnockbackScale,
+                knockback = force.magnitude * collisionKnockbackScale,
             };
-            Damage(damageArgs, collision.rigidbody.gameObject, transform.position, collision.relativeVelocity.normalized);
+            Damage(damageArgs, damager.gameObject, transform.position, force.normalized);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            var rb = other.GetComponentInParent<Rigidbody>();
+            if (!rb) return;
+            DieWithContact(rb, rb.velocity);
         }
     }
 }
