@@ -13,16 +13,20 @@ MonoBehaviour:
   m_Name: Tank Settings
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  moveAccelerationTime: 1
+  moveAccelerationTime: 3
   turnSpeedDegrees: 140
   turnAccelerationTime: 0.04
-  tangentialFriction: 0.4
-  maxHealth: 3
+  tangentialFriction: 0.2
+  maxHealth: 1
+  turretTurnSpeed: 500
+  turretTurnAcceleration: 0.2
   projectilePrefab: {fileID: 9177665683896100977, guid: bbb9ecfb52d73d141a93df067237de4f, type: 3}
   damage:
     damage: 1
     knockback: 20
-  muzzleSpeed: 80
+  muzzleSpeed: 15
+  projectileGravity: 0.1
   fireDelay: 1
+  recoilForce: 2
   leanScale: {x: 0.5, y: -0.5}
   leanSmoothing: 0.9

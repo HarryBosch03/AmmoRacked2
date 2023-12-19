@@ -1,28 +1,40 @@
-﻿
-using System;
+﻿using System;
 using AmmoRacked2.Runtime.Health;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace AmmoRacked2.Runtime
 {
     public class Projectile : MonoBehaviour
     {
+        public float baseRadius;
+        
         private Vector3 position, velocity, force;
         private DamageArgs damage;
+        private float gravityScale;
 
         private GameObject owner;
+        private Transform hitFX;
+        private Transform detach;
 
-        public Projectile Spawn(GameObject owner, Vector3 position, Vector3 velocity, DamageArgs damage)
+        public Projectile Spawn(GameObject owner, Vector3 position, Vector3 velocity, DamageArgs damage, float gravityScale)
         {
-            var instance = Instantiate(this);
+            var instance = Instantiate(this, position, Quaternion.LookRotation(velocity, Vector3.up));
+            instance.gravityScale = gravityScale;
             instance.owner = owner;
             instance.damage = damage;
             instance.position = position;
             instance.velocity = velocity;
             return instance;
         }
-        
+
+        private void Awake()
+        {
+            hitFX = transform.Find("HitFX");
+            if (hitFX) hitFX.gameObject.SetActive(false);
+
+            detach = transform.Find("Detach");
+        }
+
         private void FixedUpdate()
         {
             Collide();
@@ -38,22 +50,34 @@ namespace AmmoRacked2.Runtime
         private void Collide()
         {
             var start = position;
-            var end = start + velocity * Time.deltaTime * 1.1f;
 
-            if (Physics.Linecast(start, end, out var hit))
+            if (Physics.SphereCast(start, baseRadius, velocity, out var hit, velocity.magnitude * Time.deltaTime * 1.1f))
             {
                 var damageable = hit.collider.GetComponentInParent<IDamageable>();
                 if (damageable != null)
                 {
                     damageable.Damage(damage, owner, hit.point, velocity.normalized);
                 }
-
-                Destroy();
+                
+                Destroy(hit.point, Vector3.Reflect(velocity, hit.normal));
             }
         }
 
-        private void Destroy()
+        private void Destroy(Vector3 position, Vector3 direction)
         {
+            if (hitFX)
+            {
+                hitFX.gameObject.SetActive(true);
+                hitFX.SetParent(null);
+                hitFX.position = position;
+                hitFX.rotation = Quaternion.LookRotation(direction, Vector3.up);
+            }
+
+            if (detach)
+            {
+                detach.SetParent(null);
+            }
+            
             Destroy(gameObject);
         }
 
@@ -62,7 +86,13 @@ namespace AmmoRacked2.Runtime
             position += velocity * Time.deltaTime;
             velocity += force * Time.deltaTime;
             
-            force = Physics.gravity;
+            force = Physics.gravity * gravityScale;
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawSphere(transform.position, baseRadius);
         }
     }
 }

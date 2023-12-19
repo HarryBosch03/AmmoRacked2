@@ -6,39 +6,47 @@ namespace AmmoRacked2.Runtime.Player
 {
     [SelectionBase]
     [DisallowMultipleComponent]
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : GenericController
     {
         public InputActionAsset inputAsset;
-        public Tank tank;
-        
+        [TextArea] public string debug;
+
         [Space]
         public float mouseTurretSensitivity;
         public float gamepadTurretSensitivity;
 
         private bool useMouse;
-        private int index;
 
-        private Vector2 lastTurretInput;
+        public IReadOnlyList<InputDevice> Devices => inputAsset.devices;
+        public bool Disconnected => Devices.Count == 0;
 
-        public static readonly List<InputDevice> Devices = new();
-
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+            
             inputAsset = Instantiate(inputAsset);
             inputAsset.devices = new InputDevice[0];
-
-            tank = Instantiate(tank);
-            tank.gameObject.SetActive(false);
         }
 
-        private void OnEnable() { inputAsset.Enable(); }
-
-        private void OnDisable() { inputAsset.Disable(); }
-
-        private void OnDestroy()
+        protected override void OnEnable()
         {
+            base.OnEnable();
+            
+            inputAsset.Enable();
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            
             inputAsset.Disable();
-            if (tank) Destroy(tank.gameObject);
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            
+            inputAsset.Disable();
         }
 
         private void Update()
@@ -48,30 +56,35 @@ namespace AmmoRacked2.Runtime.Player
                 tank.Throttle = inputAsset.FindAction("Throttle").ReadValue<float>();
                 tank.Turning = inputAsset.FindAction("Turning").ReadValue<float>();
 
-                if (inputAsset.FindAction("Shoot").WasPerformedThisFrame()) tank.Shoot = true;
+                tank.Shoot = inputAsset.FindAction("Shoot").IsPressed();
 
-                DoTurretInput
-                (
-                    useMouse ?
-                        Mouse.current.delta.ReadValue() * mouseTurretSensitivity :
-                        inputAsset.FindAction("Turret").ReadValue<Vector2>() * gamepadTurretSensitivity
-                );
+                DoTurretInput();
             }
         }
 
-        private void DoTurretInput(Vector2 input)
+        private void DoTurretInput()
         {
-            var delta = input.normalized - lastTurretInput.normalized;
+            Vector2 screenPos;
+            if (useMouse)
+            {
+                screenPos = Mouse.current.position.ReadValue();
+            }
+            else
+            {
+                screenPos = mainCamera.WorldToScreenPoint(tank.transform.position);
+                screenPos += inputAsset.FindAction("Turret").ReadValue<Vector2>() * 200.0f;
+            }
 
-            tank.TurretInput = -Vector3.Cross(input, delta).z / Time.deltaTime;
-            lastTurretInput = input;
+            var ray = mainCamera.ScreenPointToRay(screenPos);
+            var plane = new Plane(Vector3.up, tank.turret.position);
+            if (plane.Raycast(ray, out var enter))
+            {
+                tank.AimPosition = ray.GetPoint(enter);
+            }
         }
 
-        private void SetIndex(int index)
+        public void SetDevice(InputDevice device)
         {
-            this.index = index;
-
-            var device = Devices[index];
             if (device == Keyboard.current || device == Mouse.current)
             {
                 inputAsset.devices = new InputDevice[] { Keyboard.current, Mouse.current };
@@ -81,28 +94,13 @@ namespace AmmoRacked2.Runtime.Player
             {
                 inputAsset.devices = new[] { device };
             }
-
-            name = $"[{index + 1}: {device.name}]PlayerController";
-            tank.name = $"{name}.Tank";
         }
-
-        public bool TrySpawnPlayer(InputDevice device, out PlayerController player)
+        
+        public PlayerController SpawnPlayer(InputDevice device)
         {
-            player = null;
-            if (Devices.Contains(device)) return false;
-
-            var index = Devices.Count;
-            Devices.Add(device);
-
-            player = Instantiate(this);
-            player.SetIndex(index);
-            return true;
-        }
-
-        public void SpawnTank(Vector3 spawnPoint)
-        {
-            tank.gameObject.SetActive(true);
-            tank.transform.position = spawnPoint;
+            var player = Instantiate(this);
+            player.SetDevice(device);
+            return player;
         }
     }
 }

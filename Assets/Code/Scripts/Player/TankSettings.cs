@@ -18,10 +18,14 @@ namespace AmmoRacked2.Runtime.Player
         public int maxHealth;
 
         [Space]
+        public float turretTurnSpeed;
+        public float turretTurnAcceleration;
         public Projectile projectilePrefab;
         public DamageArgs damage;
         public float muzzleSpeed;
+        public float projectileGravity = 0.3f;
         public float fireDelay;
+        public float recoilForce;
         
         [Space]
         public Vector2 leanScale = Vector2.one;

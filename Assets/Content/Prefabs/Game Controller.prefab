@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d1ab3863cbc2642aaa7c90b840338f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamemode: {fileID: 11400000, guid: c2bcf414fe6d77f4aba0fbaced62e35a, type: 2}
   joinAction:
     m_Name: Join
     m_Type: 0
@@ -74,7 +75,10 @@ MonoBehaviour:
   spawnMax: {x: 10, y: 10}
   spawnAll: 0
   spawnImmediately: 1
+  aiCount: 0
+  scores: 
   playerPrefab: {fileID: -3619415225865938314, guid: 8c05aeff0ac0c084cb7fd30bcadb1d4b, type: 3}
+  aiController: {fileID: 8115114681043133758, guid: 8dfa6673d12b70a4fb642f483bc7e6bd, type: 3}
 --- !u!114 &7981746532585796888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,4 +95,4 @@ MonoBehaviour:
   height: 30
   padding: 5
   minSize: 5
-  smoothing: 0
+  smoothing: 0.94
