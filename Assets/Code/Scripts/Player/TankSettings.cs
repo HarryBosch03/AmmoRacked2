@@ -22,6 +22,7 @@ namespace AmmoRacked2.Runtime.Player
         public float turretTurnSpeed;
         public float turretTurnAcceleration;
         public Projectile projectilePrefab;
+        public AudioClip shootAudioClip;
         public DamageArgs damage;
         public float muzzleSpeed;
         public float projectileGravity = 0.3f;

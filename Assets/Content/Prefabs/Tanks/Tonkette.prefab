@@ -4890,7 +4890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40aec102e40a4d27ab1bb7e938ef220a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: fa01b149c0f25604787a84c841290794, type: 2}
+  config: {fileID: 11400000, guid: 2118ec65d4be8d84fb4bac712b348953, type: 2}
   deadTankPrefab: {fileID: 5272512520199695960, guid: e4856bb4e07f5c04ca7086fee51d9c0d, type: 3}
   turret: {fileID: 5861020970745278730}
   muzzle: {fileID: 5692738368416163820}
