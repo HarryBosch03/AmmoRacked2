@@ -12,23 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ec8da3bbc14dc09b5e8fa028018445, type: 3}
   m_Name: LightTank
   m_EditorClassIdentifier: 
-  moveSpeed: 15
-  moveAccelerationTime: 12
+  moveSpeed: 20
+  moveAccelerationTime: 20
   turnSpeedDegrees: 200
   turnAccelerationTime: 0.5
   tangentialFriction: 0.081
-  maxHealth: 15
+  maxHealth: 10
   lockTurret: 0
   turretTurnSpeed: 500
   turretTurnAcceleration: 0.2
   projectilePrefab: {fileID: 9177665683896100977, guid: bedb8839b81e03f438eff5ac8d01f698, type: 3}
   shootAudioClip: {fileID: 8300000, guid: e600e683fb1c4884f8617c2baff3cf81, type: 3}
   damage:
-    damage: 1
+    damage: 2
     knockback: 0.25
   muzzleSpeed: 40
   projectileGravity: 4
-  fireDelay: 0.25
+  fireDelay: 0.3
   recoilForce: 0.01
   leanScale: {x: 0.75, y: -0.75}
   leanSmoothing: 0.75

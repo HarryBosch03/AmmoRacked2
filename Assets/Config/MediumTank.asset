@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ec8da3bbc14dc09b5e8fa028018445, type: 3}
   m_Name: MediumTank
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  moveSpeed: 8
   moveAccelerationTime: 4
-  turnSpeedDegrees: 125
+  turnSpeedDegrees: 150
   turnAccelerationTime: 0.75
   tangentialFriction: 0.5
-  maxHealth: 20
+  maxHealth: 15
   lockTurret: 0
   turretTurnSpeed: 300
   turretTurnAcceleration: 0.2

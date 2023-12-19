@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ec8da3bbc14dc09b5e8fa028018445, type: 3}
   m_Name: HeavyTank
   m_EditorClassIdentifier: 
-  moveSpeed: 2.75
-  moveAccelerationTime: 1.5
-  turnSpeedDegrees: 85
+  moveSpeed: 4
+  moveAccelerationTime: 2
+  turnSpeedDegrees: 120
   turnAccelerationTime: 1
   tangentialFriction: 1
-  maxHealth: 50
+  maxHealth: 20
   lockTurret: 0
   turretTurnSpeed: 100
   turretTurnAcceleration: 0.1
   projectilePrefab: {fileID: 9177665683896100977, guid: bbb9ecfb52d73d141a93df067237de4f, type: 3}
-  shootAudioClip: {fileID: 8300000, guid: 6010c91acb5cee14ca26ebd2342ae789, type: 3}
+  shootAudioClip: {fileID: 8300000, guid: 2b1a6d7d56bd30049abf95851e645495, type: 3}
   damage:
-    damage: 15
+    damage: 10
     knockback: 10
   muzzleSpeed: 100
   projectileGravity: 2
