@@ -79,11 +79,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: fa01b149c0f25604787a84c841290794, type: 2}
   deadTankPrefab: {fileID: 5272512520199695960, guid: e4856bb4e07f5c04ca7086fee51d9c0d, type: 3}
-  turret: {fileID: 6135330511063142732}
-  muzzle: {fileID: 0}
-  coloredRenderers:
-  - {fileID: 5979278448488493581}
-  - {fileID: 7074892497483879381}
+  turret: {fileID: 5861020970745278730}
+  muzzle: {fileID: 6284256269903720598}
+  coloredRenderers: []
 --- !u!114 &3892763089247445254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,7 +147,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7e4c14eee4fc6d64bbf7ef49fa7e9618, type: 3}
       propertyPath: m_Name
-      value: Tonket
+      value: Model
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e4c14eee4fc6d64bbf7ef49fa7e9618, type: 3}
@@ -158,18 +156,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7e4c14eee4fc6d64bbf7ef49fa7e9618, type: 3}
   m_PrefabInstance: {fileID: 4879657626569721696}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &5979278448488493581 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -7979625564313422483, guid: 7e4c14eee4fc6d64bbf7ef49fa7e9618, type: 3}
-  m_PrefabInstance: {fileID: 4879657626569721696}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &6135330511063142732 stripped
+--- !u!4 &5861020970745278730 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -7593891037433686484, guid: 7e4c14eee4fc6d64bbf7ef49fa7e9618, type: 3}
+  m_CorrespondingSourceObject: {fileID: -7859202157380766102, guid: 7e4c14eee4fc6d64bbf7ef49fa7e9618, type: 3}
   m_PrefabInstance: {fileID: 4879657626569721696}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &7074892497483879381 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -6802942323946908491, guid: 7e4c14eee4fc6d64bbf7ef49fa7e9618, type: 3}
+--- !u!4 &6284256269903720598 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -7742198988533188618, guid: 7e4c14eee4fc6d64bbf7ef49fa7e9618, type: 3}
   m_PrefabInstance: {fileID: 4879657626569721696}
   m_PrefabAsset: {fileID: 0}
