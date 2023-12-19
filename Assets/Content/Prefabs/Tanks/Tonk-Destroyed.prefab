@@ -9778,7 +9778,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 2f32e36c5ebfc584d98605696bdaaa20, type: 2}
     - target: {fileID: 919132149155446097, guid: 508f885694f975f4d85f7a23fd9107b2, type: 3}
       propertyPath: m_Name
-      value: Tonk
+      value: Model
       objectReference: {fileID: 0}
     - target: {fileID: 7492997679803823654, guid: 508f885694f975f4d85f7a23fd9107b2, type: 3}
       propertyPath: m_Materials.Array.data[0]

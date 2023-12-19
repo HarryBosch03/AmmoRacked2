@@ -68,7 +68,7 @@ namespace AmmoRacked2.Runtime.Player
             if (!Shoot) return;
             if (Time.time - lastFireTime < config.fireDelay) return;
 
-            var fwd = muzzle.forward;
+            var fwd = muzzle.up;
             fwd.y = 0.0f;
             fwd.Normalize();
             

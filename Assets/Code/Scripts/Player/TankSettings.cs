@@ -18,6 +18,7 @@ namespace AmmoRacked2.Runtime.Player
         public int maxHealth;
 
         [Space]
+        public bool lockTurret;
         public float turretTurnSpeed;
         public float turretTurnAcceleration;
         public Projectile projectilePrefab;
