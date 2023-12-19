@@ -13,6 +13,15 @@ MonoBehaviour:
   m_Name: Gamemode
   m_EditorClassIdentifier: 
   respawn: 1
-  respawnTime: 3
+  respawnTime: 1
+  keepScore: 1
+  allowNegativeScore: 1
   pointsOnKill: 1
   pointsOnDeath: -1
+  keepTime: 1
+  timeLimitSeconds: 120
+  playerColors:
+  - {r: 1, g: 0.54, b: 0.12, a: 1}
+  - {r: 0.5, g: 1, b: 0.17, a: 1}
+  - {r: 0.22, g: 0.71, b: 1, a: 1}
+  - {r: 0.68, g: 0.17, b: 1, a: 1}

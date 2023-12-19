@@ -78,9 +78,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: fa01b149c0f25604787a84c841290794, type: 2}
-  deadTankPrefab: {fileID: 5272512520199695960, guid: e4856bb4e07f5c04ca7086fee51d9c0d, type: 3}
+  deadTankPrefab: {fileID: 5272512520199695960, guid: 62d5d06cb95be8e44970d450b5e7b18c, type: 3}
   turret: {fileID: 7817992137268635260}
   muzzle: {fileID: 8938610862010399838}
+  coloredRenderers:
+  - {fileID: 6990125465692967485}
+  - {fileID: 7474379036069167853}
 --- !u!114 &3892763089247445254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 508f885694f975f4d85f7a23fd9107b2, type: 3}
       propertyPath: m_Name
-      value: Tonk
+      value: Model
       objectReference: {fileID: 0}
     - target: {fileID: 7798330183970083511, guid: 508f885694f975f4d85f7a23fd9107b2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -173,6 +176,16 @@ PrefabInstance:
 --- !u!4 &561987795664671520 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 508f885694f975f4d85f7a23fd9107b2, type: 3}
+  m_PrefabInstance: {fileID: 19753350472922315}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6990125465692967485 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -2213581329998190858, guid: 508f885694f975f4d85f7a23fd9107b2, type: 3}
+  m_PrefabInstance: {fileID: 19753350472922315}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7474379036069167853 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7492997679803823654, guid: 508f885694f975f4d85f7a23fd9107b2, type: 3}
   m_PrefabInstance: {fileID: 19753350472922315}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &7817992137268635260 stripped
