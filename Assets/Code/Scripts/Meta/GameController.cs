@@ -86,9 +86,26 @@ namespace AmmoRacked2.Runtime.Meta
             var device = ctx.control.device;
             if (device is not Keyboard && device is not Mouse && device is not Gamepad) return;
 
-            if (!playerPrefab.TrySpawnPlayer(device, out var player)) return;
-
-            AddController(player);
+            foreach (var controller in players)
+            {
+                if (controller is not PlayerController player) continue;
+                foreach (var other in player.Devices)
+                {
+                    if (device == other) return;
+                }
+            }
+            
+            foreach (var controller in players)
+            {
+                if (controller is not PlayerController player) continue;
+                if (player.Disconnected)
+                {
+                    player.SetDevice(device);
+                    return;
+                }
+            }
+            
+            AddController(playerPrefab.SpawnPlayer(device));
         }
 
         private void AddController(GenericController controller)
