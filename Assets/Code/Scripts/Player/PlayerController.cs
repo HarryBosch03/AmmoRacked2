@@ -26,6 +26,7 @@ namespace AmmoRacked2.Runtime.Player
         public Color Color { get; private set; }
         public int Index { get; private set; }
 
+        public static bool FreezeInput { get; set; }
         public static event Action<PlayerController, Tank, DamageArgs, GameObject, Vector3, Vector3> KillEvent;
         public static event Action<PlayerController, Tank, DamageArgs, GameObject, Vector3, Vector3> DeathEvent;
         public static event Action<PlayerController, Tank> TankSpawnEvent;
@@ -36,7 +37,7 @@ namespace AmmoRacked2.Runtime.Player
             tank.gameObject.SetActive(false);
 
             mainCamera = Camera.main;
-            
+
             inputAsset = Instantiate(inputAsset);
             inputAsset.devices = new InputDevice[0];
         }
@@ -66,7 +67,7 @@ namespace AmmoRacked2.Runtime.Player
             }
         }
 
-        
+
         private void OnDestroy()
         {
             inputAsset.Disable();
@@ -77,13 +78,20 @@ namespace AmmoRacked2.Runtime.Player
         {
             if (tank)
             {
-                tank.Throttle = inputAsset.FindAction("Throttle").ReadValue<float>();
-                tank.Turning = inputAsset.FindAction("Turning").ReadValue<float>();
-
-                tank.Shoot = inputAsset.FindAction("Shoot").IsPressed();
-
-                DoTurretInput();
+                PassInput();
             }
+        }
+
+        private void PassInput()
+        {
+            if (FreezeInput) return;
+            
+            tank.Throttle = inputAsset.FindAction("Throttle").ReadValue<float>();
+            tank.Turning = inputAsset.FindAction("Turning").ReadValue<float>();
+
+            tank.Shoot = inputAsset.FindAction("Shoot").IsPressed();
+
+            DoTurretInput();
         }
 
         private void DoTurretInput()
@@ -119,21 +127,21 @@ namespace AmmoRacked2.Runtime.Player
                 inputAsset.devices = new[] { device };
             }
         }
-        
+
         public void Setup(int index, Color color)
         {
             Index = index;
             SetColor(color);
         }
-        
+
         public void SpawnTank(Vector3 spawnPoint)
         {
             tank.gameObject.SetActive(true);
             tank.transform.position = spawnPoint;
-            
+
             TankSpawnEvent?.Invoke(this, tank);
         }
-        
+
         public PlayerController SpawnPlayer(InputDevice device)
         {
             var player = Instantiate(this);

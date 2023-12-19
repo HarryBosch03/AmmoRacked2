@@ -2795,6 +2795,7 @@ GameObject:
   - component: {fileID: 311600702}
   - component: {fileID: 311600703}
   - component: {fileID: 311600704}
+  - component: {fileID: 311600705}
   m_Layer: 5
   m_Name: GameUI
   m_TagString: Untagged
@@ -2982,6 +2983,43 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &311600705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311600697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fed5f1fbf3585345b807854b6ee58f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseAction:
+    m_Name: Pause
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 1131c7eb-deeb-40bc-ae5d-52e0a052b592
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: a32adbfb-f2bc-47cb-ac8c-c6fa33bfe6f3
+      m_Path: <Keyboard>/escape
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Pause
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 0da8f1c6-bd64-43c7-a595-4484fe1c511b
+      m_Path: <Gamepad>/start
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Pause
+      m_Flags: 0
+    m_Flags: 0
 --- !u!1 &315270797
 GameObject:
   m_ObjectHideFlags: 0
