@@ -43,6 +43,8 @@ namespace AmmoRacked2.Runtime.Utility
             if (propSwap)
             {
                 var instance = Instantiate(propSwap, transform.position, transform.rotation);
+                instance.transform.localScale = transform.localScale;
+                
                 foreach (var rb in instance.GetComponentsInChildren<Rigidbody>())
                 {
                     rb.mass = propMass;
