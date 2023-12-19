@@ -27,6 +27,7 @@ namespace AmmoRacked2.Runtime.Player
         public int Index { get; private set; }
 
         public static bool FreezeInput { get; set; }
+        public static readonly int[] HatSelection = new int[4];
         public static event Action<PlayerController, Tank, DamageArgs, GameObject, Vector3, Vector3> KillEvent;
         public static event Action<PlayerController, Tank, DamageArgs, GameObject, Vector3, Vector3> DeathEvent;
         public static event Action<PlayerController, Tank> TankSpawnEvent;
@@ -138,6 +139,7 @@ namespace AmmoRacked2.Runtime.Player
 
         public void SpawnTank(Vector3 spawnPoint)
         {
+            tank.SetHat(HatSelection[Index] - 1);
             tank.gameObject.SetActive(true);
             tank.transform.position = spawnPoint;
 

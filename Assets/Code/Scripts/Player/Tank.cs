@@ -1,4 +1,5 @@
-﻿using AmmoRacked2.Runtime.Health;
+﻿using System;
+using AmmoRacked2.Runtime.Health;
 using UnityEngine;
 
 namespace AmmoRacked2.Runtime.Player
@@ -27,9 +28,9 @@ namespace AmmoRacked2.Runtime.Player
         public float Turning { get; set; }
         public Vector3 AimPosition { get; set; }
         public bool Shoot { get; set; }
-        
-        public Rigidbody Body { get; private set; }
 
+        public Rigidbody Body { get; private set; }
+        
         public static event System.Action<Tank, DamageArgs, GameObject, Vector3, Vector3> DamageEvent;
         public static event System.Action<Tank, DamageArgs, GameObject, Vector3, Vector3> DeathEvent;
         
@@ -50,6 +51,16 @@ namespace AmmoRacked2.Runtime.Player
         private void OnEnable()
         {
             currentHealth = config.maxHealth;
+        }
+
+        public void SetHat(int hatIndex)
+        {
+            var hatParent = transform.Find("Hat");
+            for (var i = 0; i < hatParent.childCount; i++)
+            {
+                var hat = hatParent.GetChild(i);
+                hat.gameObject.SetActive(i == hatIndex);
+            }
         }
 
         private void FixedUpdate()

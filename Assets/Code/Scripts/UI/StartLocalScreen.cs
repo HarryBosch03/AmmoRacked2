@@ -187,7 +187,7 @@ namespace AmmoRacked2.Runtime.UI
             private void Update()
             {
                 text.text = $"Player {index + 1}\n<size=50%>{(Ready ? "Ready" : "Not Ready")}";
-                portrait.texture = screen.tankPortraits[GameController.TankSelection[index]];
+                portrait.texture = screen.tankPortraits[index];
             }
 
             public void ChangeTankSelection(int delta)
