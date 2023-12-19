@@ -48,6 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseRadius: 0.2
+  bulletAudio: {fileID: 0}
+  bulletMissClip: {fileID: 8300000, guid: c9c97156d1a5ccf4e9b63d320706112d, type: 3}
+  bulletHitClip: {fileID: 8300000, guid: 8d003d3e2dfafeb4bbb22e2435f5a444, type: 3}
 --- !u!1 &9177665684182854892
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,6 +141,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9177665683896100978}
     m_Modifications:
+    - target: {fileID: 3576562663778761281, guid: ce36d40490fa22b44bb3117aee472bbb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698901383945691183, guid: ce36d40490fa22b44bb3117aee472bbb, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698901383945691183, guid: ce36d40490fa22b44bb3117aee472bbb, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 4371973530999955089, guid: ce36d40490fa22b44bb3117aee472bbb, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -186,6 +201,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Detach
       objectReference: {fileID: 0}
+    - target: {fileID: 4371973530999955102, guid: ce36d40490fa22b44bb3117aee472bbb, type: 3}
+      propertyPath: InitialModule.size3D
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4371973530999955102, guid: ce36d40490fa22b44bb3117aee472bbb, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 4371973530999955102, guid: ce36d40490fa22b44bb3117aee472bbb, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4371973530999955102, guid: ce36d40490fa22b44bb3117aee472bbb, type: 3}
+      propertyPath: InitialModule.startLifetime.minScalar
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce36d40490fa22b44bb3117aee472bbb, type: 3}
 --- !u!4 &8199649429580024381 stripped
@@ -200,6 +231,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9177665683896100978}
     m_Modifications:
+    - target: {fileID: 3698901383945691183, guid: ce36d40490fa22b44bb3117aee472bbb, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698901383945691183, guid: ce36d40490fa22b44bb3117aee472bbb, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698901383945691183, guid: ce36d40490fa22b44bb3117aee472bbb, type: 3}
+      propertyPath: InitialModule.startColor.minColor.b
+      value: 0.2246796
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698901383945691183, guid: ce36d40490fa22b44bb3117aee472bbb, type: 3}
+      propertyPath: InitialModule.startColor.minColor.g
+      value: 0.3633733
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698901383945691183, guid: ce36d40490fa22b44bb3117aee472bbb, type: 3}
+      propertyPath: InitialModule.startColor.minColor.r
+      value: 0.4811321
+      objectReference: {fileID: 0}
     - target: {fileID: 4371973530999955089, guid: ce36d40490fa22b44bb3117aee472bbb, type: 3}
       propertyPath: m_RootOrder
       value: 2
