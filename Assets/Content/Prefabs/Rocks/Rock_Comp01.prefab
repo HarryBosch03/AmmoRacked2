@@ -125,6 +125,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1259208750046544722}
     m_Modifications:
+    - target: {fileID: 7140516345521886393, guid: 10a125549171467459e1229cd0d4642c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3932cfde8733bf041b5d06eeac2805fb, type: 2}
     - target: {fileID: 8310013311448788950, guid: 10a125549171467459e1229cd0d4642c, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -199,6 +203,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1259208750046544722}
     m_Modifications:
+    - target: {fileID: 7929140640377872430, guid: ac9e4bdf7991f0d468ef1a224ea1b0f5, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3932cfde8733bf041b5d06eeac2805fb, type: 2}
     - target: {fileID: 8433283970060878331, guid: ac9e4bdf7991f0d468ef1a224ea1b0f5, type: 3}
       propertyPath: m_Name
       value: _SmallRock_02 (1)
@@ -333,6 +341,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4194340279239404274, guid: 71b6dc447abb150479a2b7c03db91567, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3932cfde8733bf041b5d06eeac2805fb, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71b6dc447abb150479a2b7c03db91567, type: 3}
 --- !u!4 &7247446022871441278 stripped
@@ -347,6 +359,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1259208750046544722}
     m_Modifications:
+    - target: {fileID: 7929140640377872430, guid: ac9e4bdf7991f0d468ef1a224ea1b0f5, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3932cfde8733bf041b5d06eeac2805fb, type: 2}
     - target: {fileID: 8433283970060878331, guid: ac9e4bdf7991f0d468ef1a224ea1b0f5, type: 3}
       propertyPath: m_Name
       value: _SmallRock_02
@@ -543,6 +559,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -9.57
       objectReference: {fileID: 0}
+    - target: {fileID: 4194340279239404274, guid: 71b6dc447abb150479a2b7c03db91567, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3932cfde8733bf041b5d06eeac2805fb, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71b6dc447abb150479a2b7c03db91567, type: 3}
 --- !u!4 &7247446023133441302 stripped
@@ -617,6 +637,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: _SmallRock_03 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1214862805849342307, guid: a4ccf6031ca2f1746a4c3bb2dbb843f8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3932cfde8733bf041b5d06eeac2805fb, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4ccf6031ca2f1746a4c3bb2dbb843f8, type: 3}
 --- !u!4 &5655778729289328901 stripped
@@ -631,6 +655,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1259208750046544722}
     m_Modifications:
+    - target: {fileID: 7140516345521886393, guid: 10a125549171467459e1229cd0d4642c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3932cfde8733bf041b5d06eeac2805fb, type: 2}
     - target: {fileID: 8310013311448788950, guid: 10a125549171467459e1229cd0d4642c, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -765,6 +793,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: _SmallRock_03 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1214862805849342307, guid: a4ccf6031ca2f1746a4c3bb2dbb843f8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3932cfde8733bf041b5d06eeac2805fb, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4ccf6031ca2f1746a4c3bb2dbb843f8, type: 3}
 --- !u!4 &5655778729552372371 stripped
@@ -853,6 +885,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1259208750046544722}
     m_Modifications:
+    - target: {fileID: 7140516345521886393, guid: 10a125549171467459e1229cd0d4642c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3932cfde8733bf041b5d06eeac2805fb, type: 2}
     - target: {fileID: 8310013311448788950, guid: 10a125549171467459e1229cd0d4642c, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -927,6 +963,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1259208750046544722}
     m_Modifications:
+    - target: {fileID: 7140516345521886393, guid: 10a125549171467459e1229cd0d4642c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3932cfde8733bf041b5d06eeac2805fb, type: 2}
     - target: {fileID: 8310013311448788950, guid: 10a125549171467459e1229cd0d4642c, type: 3}
       propertyPath: m_RootOrder
       value: 3
