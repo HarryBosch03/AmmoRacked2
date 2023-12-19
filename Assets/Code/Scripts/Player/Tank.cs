@@ -74,7 +74,7 @@ namespace AmmoRacked2.Runtime.Player
             
             config.projectilePrefab.Spawn(gameObject, muzzle.position, Body.velocity + fwd * config.muzzleSpeed, config.damage, config.projectileGravity);
             
-            Body.AddForce(-muzzle.forward * config.recoilForce, ForceMode.Impulse);
+            Body.AddForce(-muzzle.up * config.recoilForce, ForceMode.Impulse);
             
             lastFireTime = Time.time;
         }
