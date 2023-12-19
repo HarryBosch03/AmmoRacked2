@@ -26,6 +26,8 @@ namespace AmmoRacked2.Runtime.Player
             var current = tank.turret.up;
             var target = tank.AimPosition - tank.transform.position;
             
+            if (target.magnitude < 0.1f) return;
+            
             current.Normalize();
             target.Normalize();
 
