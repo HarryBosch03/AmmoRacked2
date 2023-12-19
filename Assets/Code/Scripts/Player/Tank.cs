@@ -2,6 +2,7 @@
 using AmmoRacked2.Runtime.Health;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 namespace AmmoRacked2.Runtime.Player
 {
@@ -28,6 +29,7 @@ namespace AmmoRacked2.Runtime.Player
         public float Turning { get; set; }
         public Vector3 AimPosition { get; set; }
         public bool Shoot { get; set; }
+        //public AudioSource shootAudioSource;
         
         public Rigidbody Body { get; private set; }
 
@@ -74,6 +76,9 @@ namespace AmmoRacked2.Runtime.Player
             
             config.projectilePrefab.Spawn(gameObject, muzzle.position, Body.velocity + fwd * config.muzzleSpeed, config.damage, config.projectileGravity);
             
+            //shootAudioSource.pitch = Random.Range(0.75f, 1.25f);
+            //shootAudioSource.PlayOneShot(config.shootAudioClip);
+
             Body.AddForce(-muzzle.up * config.recoilForce, ForceMode.Impulse);
             
             lastFireTime = Time.time;

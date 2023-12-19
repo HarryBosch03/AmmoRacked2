@@ -31,7 +31,6 @@ namespace AmmoRacked2.Runtime
         {
             hitFX = transform.Find("HitFX");
             if (hitFX) hitFX.gameObject.SetActive(false);
-
             detach = transform.Find("Detach");
         }
 
@@ -57,8 +56,9 @@ namespace AmmoRacked2.Runtime
                 if (damageable != null)
                 {
                     damageable.Damage(damage, owner, hit.point, velocity.normalized);
+
                 }
-                
+
                 Destroy(hit.point, Vector3.Reflect(velocity, hit.normal));
             }
         }

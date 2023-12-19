@@ -22,6 +22,7 @@ MonoBehaviour:
   turretTurnSpeed: 500
   turretTurnAcceleration: 0.2
   projectilePrefab: {fileID: 9177665683896100977, guid: bedb8839b81e03f438eff5ac8d01f698, type: 3}
+  shootAudioClip: {fileID: 8300000, guid: e600e683fb1c4884f8617c2baff3cf81, type: 3}
   damage:
     damage: 1
     knockback: 0.25
