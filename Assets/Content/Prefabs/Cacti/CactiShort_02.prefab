@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2340917630291451255}
   - component: {fileID: 547305446795930045}
   - component: {fileID: 1178252906495483289}
+  - component: {fileID: 2072509784827611096}
   m_Layer: 0
   m_Name: CactiShort_02
   m_TagString: Untagged
@@ -92,9 +93,27 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2060562955724376168}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.12
   m_Height: 0.71817666
   m_Direction: 1
   m_Center: {x: 0, y: 0.35908833, z: 0}
+--- !u!114 &2072509784827611096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060562955724376168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c20e0a59f504c2e93e1b285526b2233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  propSwap: {fileID: 1191815077883095125, guid: 8dc2b8ddeec50c049abe447648b5bb5d, type: 3}
+  propMass: 0.02
+  damageKnockbackScale: 0.1
+  collisionKnockbackScale: 2
+  dieOnContact: 1
