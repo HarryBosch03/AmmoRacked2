@@ -10,9 +10,12 @@ namespace AmmoRacked2.Runtime.Utility
     {
         public int health;
         public GameObject propSwap;
-        [Range(0.0f, 1.0f)]
-        public float knockbackScale = 0.1f;
-        public bool dieOnContact;
+        public float propMass = 0.02f;
+        [Range(0.0f, 4.0f)]
+        public float damageKnockbackScale = 0.1f;
+        [Range(0.0f, 4.0f)]
+        public float collisionKnockbackScale = 2.0f;
+        public bool dieOnContact = true;
 
         private bool destroyed;
         private SinkWithDelay sink;
@@ -42,7 +45,8 @@ namespace AmmoRacked2.Runtime.Utility
                 var instance = Instantiate(propSwap, transform.position, transform.rotation);
                 foreach (var rb in instance.GetComponentsInChildren<Rigidbody>())
                 {
-                    rb.AddForce(direction.normalized * args.knockback * knockbackScale, ForceMode.VelocityChange);
+                    rb.mass = propMass;
+                    rb.AddForce(direction.normalized * args.knockback * damageKnockbackScale, ForceMode.VelocityChange);
                 }
 
                 Destroy(gameObject);
@@ -60,7 +64,7 @@ namespace AmmoRacked2.Runtime.Utility
             var damageArgs = new DamageArgs
             {
                 damage = health,
-                knockback = collision.relativeVelocity.magnitude,
+                knockback = collision.relativeVelocity.magnitude * collisionKnockbackScale,
             };
             Damage(damageArgs, collision.rigidbody.gameObject, transform.position, collision.relativeVelocity.normalized);
         }
