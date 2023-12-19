@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Transactions;
-using AmmoRacked2.Runtime.AI;
 using AmmoRacked2.Runtime.Health;
 using AmmoRacked2.Runtime.Player;
 using UnityEngine;
@@ -19,14 +17,33 @@ namespace AmmoRacked2.Runtime.Meta
         public Vector2 spawnMax;
         public bool spawnAll;
         public bool spawnImmediately;
-        public int aiCount;
-        public List<int> scores = new();
+        [SerializeField] private List<int> scores = new();
 
         public PlayerController playerPrefab;
-        public TankAI aiController;
-        public List<GenericController> players = new();
+        public List<PlayerController> players = new();
+        
+        public float GameTime { get; private set; }
+        public float GameTimeLeft => gamemode.keepTime ? gamemode.timeLimitSeconds - GameTime : 0.0f;
         
         public static GameController ActiveGameController { get; private set; }
+        public static event Action<int, int, int> PlayerScoreChangeEvent;
+
+        public int GetScore(int playerIndex) => scores[playerIndex];
+
+        public void SetScore(int playerIndex, int score)
+        {
+            var oldScore = scores[playerIndex];
+            scores[playerIndex] = ValidateScore(score);
+            PlayerScoreChangeEvent?.Invoke(playerIndex, score, oldScore);
+        }
+
+        private int ValidateScore(int score)
+        {
+            if (!gamemode.allowNegativeScore) score = Mathf.Max(0, score);
+            return score;
+        }
+
+        public void IncrementScore(int playerIndex, int score) => SetScore(playerIndex, GetScore(playerIndex) + score);
 
         private void OnEnable()
         {
@@ -35,19 +52,12 @@ namespace AmmoRacked2.Runtime.Meta
             joinAction.Enable();
             joinAction.performed += OnJoinPerformed;
 
-            GenericController.KillEvent += OnPlayerKill;
-            GenericController.DeathEvent += OnPlayerDeath;
+            PlayerController.KillEvent += OnPlayerKill;
+            PlayerController.DeathEvent += OnPlayerDeath;
+            
+            GameTime = 0.0f;
         }
-
-        private void Start()
-        {
-            for (var i = 0; i < aiCount; i++)
-            {
-                var controller = Instantiate(aiController);
-                AddController(controller);
-            }
-        }
-
+        
         private void OnDisable()
         {
             joinAction.performed -= OnJoinPerformed;
@@ -60,8 +70,8 @@ namespace AmmoRacked2.Runtime.Meta
 
             players.Clear();
 
-            GenericController.KillEvent -= OnPlayerKill;
-            GenericController.DeathEvent -= OnPlayerDeath;
+            PlayerController.KillEvent -= OnPlayerKill;
+            PlayerController.DeathEvent -= OnPlayerDeath;
 
             if (ActiveGameController == this)
             {
@@ -69,22 +79,30 @@ namespace AmmoRacked2.Runtime.Meta
             }
         }
 
-        private void OnPlayerKill(GenericController player, Tank tank, DamageArgs args, GameObject invoker, Vector3 point, Vector3 direction)
+        private void Update()
         {
-            scores[player.Index] += gamemode.pointsOnKill;
+            GameTime += Time.deltaTime;
+            if (GameTime > gamemode.timeLimitSeconds && gamemode.keepTime)
+            {
+                // TODO: Finish the Game
+            }
         }
 
-        private void OnPlayerDeath(GenericController player, Tank tank, DamageArgs args, GameObject invoker, Vector3 point, Vector3 direction)
+        private void OnPlayerKill(PlayerController player, Tank tank, DamageArgs args, GameObject invoker, Vector3 point, Vector3 direction)
         {
-            scores[player.Index] += gamemode.pointsOnDeath;
-            
+            IncrementScore(player.Index, gamemode.pointsOnKill);
+        }
+
+        private void OnPlayerDeath(PlayerController player, Tank tank, DamageArgs args, GameObject invoker, Vector3 point, Vector3 direction)
+        {
+            IncrementScore(player.Index, gamemode.pointsOnDeath);
             if (gamemode.respawn)
             {
                 StartCoroutine(RespawnRoutine(player, gamemode.respawnTime));
             }
         }
 
-        private IEnumerator RespawnRoutine(GenericController player, float time)
+        private IEnumerator RespawnRoutine(PlayerController player, float time)
         {
             yield return new WaitForSeconds(time);
             player.SpawnTank(GetSpawnPoint());
@@ -117,9 +135,10 @@ namespace AmmoRacked2.Runtime.Meta
             AddController(playerPrefab.SpawnPlayer(device));
         }
 
-        private void AddController(GenericController controller)
+        private void AddController(PlayerController controller)
         {
-            controller.SetIndex(players.Count);
+            var index = players.Count;
+            controller.Setup(index, gamemode.playerColors[index]);
             players.Add(controller);
             scores.Add(0);
 

@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using AmmoRacked2.Runtime.Health;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,17 +8,10 @@ namespace AmmoRacked2.Runtime.Player
 {
     [SelectionBase]
     [DisallowMultipleComponent]
-    public class PlayerController : GenericController
+    public class PlayerController : MonoBehaviour
     {
-        public static readonly Color[] PlayerColors =
-        {
-            new Color(1f, 0.54f, 0.12f),
-            new Color(0.5f, 1f, 0.17f),
-            new Color(0.22f, 0.71f, 1f),
-            new Color(0.68f, 0.17f, 1f),
-        };
-        
         public InputActionAsset inputAsset;
+        public Tank tank;
         [TextArea] public string debug;
 
         [Space]
@@ -24,38 +19,58 @@ namespace AmmoRacked2.Runtime.Player
         public float gamepadTurretSensitivity;
 
         private bool useMouse;
+        [HideInInspector] public Camera mainCamera;
 
         public IReadOnlyList<InputDevice> Devices => inputAsset.devices;
         public bool Disconnected => Devices.Count == 0;
-        public Color Color => PlayerColors[Index];
+        public Color Color { get; private set; }
+        public int Index { get; private set; }
 
-        protected override void Awake()
+        public static event Action<PlayerController, Tank, DamageArgs, GameObject, Vector3, Vector3> KillEvent;
+        public static event Action<PlayerController, Tank, DamageArgs, GameObject, Vector3, Vector3> DeathEvent;
+        public static event Action<PlayerController, Tank> TankSpawnEvent;
+
+        private void Awake()
         {
-            base.Awake();
+            tank = Instantiate(tank);
+            tank.gameObject.SetActive(false);
+
+            mainCamera = Camera.main;
             
             inputAsset = Instantiate(inputAsset);
             inputAsset.devices = new InputDevice[0];
         }
 
-        protected override void OnEnable()
+        private void OnEnable()
         {
-            base.OnEnable();
-            
             inputAsset.Enable();
+            Tank.DeathEvent += OnTankDeath;
         }
 
-        protected override void OnDisable()
+        private void OnDisable()
         {
-            base.OnDisable();
-            
             inputAsset.Disable();
+            Tank.DeathEvent -= OnTankDeath;
         }
 
-        protected override void OnDestroy()
+        private void OnTankDeath(Tank tank, DamageArgs args, GameObject invoker, Vector3 point, Vector3 direction)
         {
-            base.OnDestroy();
-            
+            if (tank == this.tank)
+            {
+                DeathEvent?.Invoke(this, tank, args, invoker, point, direction);
+            }
+
+            if (invoker.gameObject == this.tank.gameObject)
+            {
+                KillEvent?.Invoke(this, tank, args, invoker, point, direction);
+            }
+        }
+
+        
+        private void OnDestroy()
+        {
             inputAsset.Disable();
+            if (tank) Destroy(tank.gameObject);
         }
 
         private void Update()
@@ -105,11 +120,31 @@ namespace AmmoRacked2.Runtime.Player
             }
         }
         
+        public void Setup(int index, Color color)
+        {
+            Index = index;
+            SetColor(color);
+        }
+        
+        public void SpawnTank(Vector3 spawnPoint)
+        {
+            tank.gameObject.SetActive(true);
+            tank.transform.position = spawnPoint;
+            
+            TankSpawnEvent?.Invoke(this, tank);
+        }
+        
         public PlayerController SpawnPlayer(InputDevice device)
         {
             var player = Instantiate(this);
             player.SetDevice(device);
             return player;
+        }
+
+        public void SetColor(Color color)
+        {
+            Color = color;
+            tank.SetColor(color);
         }
     }
 }

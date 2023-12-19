@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FX
+  m_Name: FX-Bright
   m_Shader: {fileID: 4800000, guid: 92548b6bd9c24b6a926517d6744038c8, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -93,7 +93,7 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _Blend: 0
-    - _Brightness: 1
+    - _Brightness: 25
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
